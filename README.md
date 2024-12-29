@@ -1,6 +1,8 @@
 # AI-HISTORICAL-NEWSPAPERS
 Workflow for scrapping, AI parsing and creating web pages for historical Newspapers.
 
+![web final](/img/output.png)
+
 # 1. Introducción.
 
 Este artículo detalla proceso de uso de la IA para la localización e identificación automática noticias literarias,artísticas y culturales, con especial atención al Siglo de Oro, en ejemplares de prensa del siglo XIX. Este procedimiento informático, aplicable a otras cabeceras, ha supuesto una reducción del  %[por determinar] del tiempo de localización de datos frente a la revisión manual de cada página. Así mismo se ha validado estadísticamente, lo que ha permitido a los investigadores dar por bueno el resultado de las consultas a la IA. Por último se detallan los entregables que de manera automática se generan con la información localizada.
@@ -8,7 +10,9 @@ Este artículo detalla proceso de uso de la IA para la localización e identific
 
 # 2. Caso de Estudio: El Diario Mercantil de Cádiz
 
-La elección del Diario Mercantil de Cádiz como objeto de análisis ha sido determinada por el profesor Jaime Galbarro, de la Universidad de Sevilla. Los ejemplares se encuentran digitalizados en el portal de Prensa Histórica https://prensahistorica.mcu.es/es/publicaciones/numeros_por_mes.do?idPublicacion=3625 Esta cabecera comienza en 1807 y se extingue en 1830, con 7.456 ejemplares y un total de  37.381 páginas a procesar. Ha resultado ser un conjunto de datos excelente, por distintos motivos:
+La elección del Diario Mercantil de Cádiz como objeto de análisis ha sido determinada por el profesor Jaime Galbarro, de la Universidad de Sevilla. Los ejemplares se encuentran digitalizados en el portal de Prensa Histórica https://prensahistorica.mcu.es/es/publicaciones/numeros_por_mes.do?idPublicacion=3625 
+
+Esta cabecera comienza en 1807 y se extingue en 1830, con un total de 7.456 ejemplares que suman 37.381 páginas a procesar. Ha resultado ser un conjunto de datos excelente, por distintos motivos:
 
 a) Es un periódico generalista, que incluye noticias económicas, culturales, sociales. 
 
@@ -24,9 +28,10 @@ e) No están uniformados los números de página de cada ejemplar.
 # 3. Prompt incial para estudiar la viabilidad del método. 
 
 Hay dos aspectos clave para el uso de IA en este caso de uso:
+
 a) La IA no puede inventarse datos que no figuren en las noticias.
 
-b) La información que devuelve la IA debe ser sistemática.
+b) La información que devuelve la IA debe ser sistemática, sin saltarse referencias.
 
 
 Debemos por tanto minimizar la posibilidad de que se incluyan alucinaciones en los resultados, que aparecen tanto si el origen de la información son páginas escaneadas como si fuera texto escrito. Pruebas con Qwen2-VL-72B, Claude y ChatGPT han demostrado que aún no tenemos disponibles IA que sean 100% fiables en textos completos. Herramientas como Transkribus o Surya dan mejores resultados en tanto que no añaden información pero aun no llegan al 100% de fiablidad y tampoco resultan útiles cuando hay maquetación diferente a la estándar, porque intercalan filas y columnas. En modelos LLM se ha evidenciado que las alucinaciones son menores cuando se pide que localice información y luego transcriba el párrafo. 
@@ -147,7 +152,9 @@ La gran ventaja de las Humanidades digitales es que incorporando informáticos a
 
 Por scrapping entendemos un conjunto de técnicas para extraer datos de páginas web. En el caso de Prensa histórica, los resultados de la web muestran enlaces con el texto PDF y la dirección URL del ejemplar digitalizado. Nos interesa extraer esas direcciones para descargarlas posteriormente. Para ello existen varias técnicas, en el caso de la web de Prensa Histórica, al mostrar resultdos por año podemos usar el complemento DownThemAll y en filtro rápido escribir PDF.
 
-Mostramos aquí una segunda opción, la usada en el proyecto, orientada al ámbito educativo porque usa búsquedas desde la consola del navegador usando expresiones regulares. Dentro del navegador web, localizar PDF -> botón derecho ->inspeccionar. Con esto se nos muestra como se construyen los enlaces.Para descargarlos, en la consola del navegador, se pega este código:
+![downthemall extension](/img/downThemAll-quick-filter-PDF.png)
+
+Mostramos aquí una segunda opción, la usada en el proyecto, orientada al ámbito educativo. Usa búsquedas desde la consola del navegador usando expresiones regulares. Dentro del navegador web, localizar PDF -> botón derecho ->inspeccionar. Con esto se nos muestra como se construyen los enlaces.Para descargarlos, en la consola del navegador, se pega este código:
 
 ```
 let bodyHtml = document.body.innerHTML;let regex = /<a\s+(?:[^>]*?\s+)?href="([^"]*)"[^>]*>\s*(.*PDF.*)\s*<\/a>/g;
@@ -176,8 +183,11 @@ console.log('Total de enlaces PDF encontrados: ' + totalLinks);
 Se guarda el resultado de la consola y se repite para cada año.Una vez obtenidos los enlaces de descarga, se procede a descargarlos.
 
 Opción a) Con el propio DownThemAll.
-Opcion b) Script de descarga ética. Si bien DownThemAll permite una descarga rápida y eficaz, se ha creado un programa que descargue uno a uno pero añadiendo pausas entre descarga que impidan saturar el servidor.
+
+Opcion b) Con un script de descarga ética. Si bien DownThemAll permite una descarga rápida y eficaz, se ha creado un programa que descargue uno a uno pero añadiendo pausas entre descarga que impidan saturar el servidor.
+
 Opción c) Extensiones específicas de descarga para esa web concreta, si las hubiera. Para Prensa Histórica, HemerotecaBNE hay extensiones para Chrome que permiten descargas masivas de los resultados de búsqueda. 
+
 
 Al finalizar este paso ya tenemos el corpus a investigar.
 

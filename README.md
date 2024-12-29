@@ -304,7 +304,7 @@ done
 En la consola https://console.anthropic.com/settings/workspaces/default/batches podemos ver los lotes y descargar cualquiera de ellos. El resultado es un JSONL que convertimos.
 ```
 #Obtenemos el custom_id, que es el nombre del pdf.
-custom_id=$(jq -r .custom_id msgbatch_****_results.jsonl)
+custom_id=$(jq -r .custom_id msgbatch_016EVpCc8X6HWza3SZ8gPoTN_results.jsonl)
 # procesamos con jq y generamos la salida json con el nombre del pdf
 
 jq -r '.result.message.content[0].text' msgbatch_016EVpCc8X6HWza3SZ8gPoTN_results.jsonl > "${custom_id}.json"
@@ -312,7 +312,7 @@ jq -r '.result.message.content[0].text' msgbatch_016EVpCc8X6HWza3SZ8gPoTN_result
 ### 6.2.4. Limpiamos la salida descargada de cada id, para resultado bajado con pyth0n y msg_id
 Una vez que comproibamos que la salida es correcta, lo precesmoa masivamente, en los ficheros *_batch_output.txt tenemos toda la onformación, que hay que extraer.
 
-``
+```
 for file in *_batch_output.txt ;do  cat $file | sed 's/\\n//g' | sed 's/\\/\\\\/g' |grep -o '{.*}'| jq -r . >$(basename "$file" "_batch_output.txt").json; done
 ```
 
@@ -331,11 +331,469 @@ En este paso tenemos el prompt, el corpus y los resultados de investigar cada ej
 
 Al ser datos organizados en JSON, nuestro proyecto requiere solo de 1 página web, la misma para cada año ,que lee el archivo combined.json y muestra los datos. Tiene una parte de código Javascript que itera y muestra los resultados, con independencia del año, del número de ejemplares, cuantas noticias ha encontrado, etc.
 
+```
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diario Mercantil Viewer</title>
+    <style>
+        :root {
+            --primary-color: #2c5282;
+            --secondary-color: #3182ce;
+            --text-color: #2d3748;
+            --bg-color: #f7fafc;
+            --card-bg: #ffffff;
+            --border-color: #e2e8f0;
+            --tag-positive: #c6f6d5;
+            --tag-positive-text: #22543d;
+            --tag-negative: #fed7d7;
+            --tag-negative-text: #822727;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.5;
+            color: var(--text-color);
+            background: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            width: 90%;
+            margin: 0 auto;
+            position: relative;
+            display: grid;
+            grid-template-columns: 1fr 0;
+            gap: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .container.with-pdf {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .content-panel {
+            min-width: 0;
+        }
+
+        .year-header {
+            background: var(--primary-color);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .entry-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .entry-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .entry-title {
+            font-size: 1.5em;
+            color: var(--primary-color);
+            margin: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .pdf-link {
+            background: var(--bg-color);
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            text-decoration: none;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+        }
+
+        .pdf-link:hover {
+            background: var(--border-color);
+        }
+
+        .metadata {
+            margin-top: 10px;
+            color: #666;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            font-weight: 500;
+        }
+
+        .tag-true {
+            background: var(--tag-positive);
+            color: var(--tag-positive-text);
+        }
+
+        .tag-false {
+            background: var(--tag-negative);
+            color: var(--tag-negative-text);
+        }
+
+        .content-section {
+            padding: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .section-title {
+            font-size: 1.1em;
+            color: var(--primary-color);
+            margin: 0 0 15px 0;
+        }
+
+        .page-reference {
+            background: var(--bg-color);
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .page-content {
+            white-space: pre-wrap;
+            font-family: Georgia, serif;
+            line-height: 1.6;
+            margin-top: 10px;
+            padding: 10px;
+            background: white;
+            border-radius: 4px;
+        }
+
+        .article-card {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .article-title {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .article-metadata {
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .article-content {
+            margin-top: 10px;
+        }
+
+        .pdf-panel {
+            display: none;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 20px;
+            height: calc(100vh - 40px);
+            overflow: hidden;
+        }
+
+        .pdf-panel.expanded {
+            display: block;
+        }
+
+        .pdf-controls {
+            padding: 10px 20px;
+            background: var(--primary-color);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .pdf-frame {
+            width: 100%;
+            height: calc(100vh - 80px);
+            border: none;
+        }
+
+        .btn {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .context {
+            font-style: italic;
+            color: #666;
+            margin-top: 10px;
+        }
+
+        .page-link {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-size: 0.9em;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+        }
+
+        .page-link:hover {
+            text-decoration: underline;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 20px;
+            font-size: 1.2em;
+            color: #666;
+        }
+
+        .error {
+            background: #fee;
+            color: #c00;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" class="container">
+        <div class="content-panel">
+            <div class="loading">Cargando datos...</div>
+        </div>
+    </div>
+
+    <script>
+        function showPdfPage(pdfName, pageNum) {
+            const container = document.querySelector('.container');
+            const existingPanel = document.getElementById('pdfPanel');
+
+            if (existingPanel) {
+                if (existingPanel.getAttribute('data-pdf') === pdfName && existingPanel.getAttribute('data-page') === String(pageNum)) {
+                    container.classList.remove('with-pdf');
+                    existingPanel.remove();
+                    return;
+                }
+                existingPanel.remove();
+            }
+
+            const pdfPanel = document.createElement('div');
+            pdfPanel.id = 'pdfPanel';
+            pdfPanel.className = 'pdf-panel expanded';
+            pdfPanel.setAttribute('data-pdf', pdfName);
+            pdfPanel.setAttribute('data-page', pageNum);
+            const pdfUrl = `${pdfName}#page=${pageNum}`;
+            pdfPanel.innerHTML = `
+        <div class="pdf-controls">
+            <span>${pdfName} - Página ${pageNum}</span>
+            <button class="btn" onclick="closePdfViewer()">✕</button>
+        </div>
+        <embed class="pdf-frame" src="${pdfUrl}" type="application/pdf">
+    `;
+
+            container.classList.add('with-pdf');
+            container.appendChild(pdfPanel);
+        }
+
+        function closePdfViewer() {
+            const container = document.querySelector('.container');
+            const pdfPanel = document.getElementById('pdfPanel');
+
+            container.classList.remove('with-pdf');
+            if (pdfPanel) {
+                pdfPanel.remove();
+            }
+        }
+
+        function createPageLink(pdfName, pageNum) {
+            return `
+                <a class="page-link" onclick="showPdfPage('${pdfName}', ${pageNum})">
+                    📄 Ver página ${pageNum}
+                </a>
+            `;
+        }
+
+        function renderArticle(article) {
+            const pageLinks = article.paginas?.map(p =>
+                `<a class="page-link" onclick="showPdfPage('${article.pdfName}', ${p.pdf})">Página ${p.pdf}</a>`
+            ).join(', ') || '';
+
+            return `
+                <div class="article-card">
+                    <div class="article-title">${article.obra.titulo}</div>
+                    <div class="article-metadata">
+                        ${article.tipo ? `<div>Tipo: ${article.tipo}</div>` : ''}
+                        ${article.autor ? `<div>Autor: ${article.autor}</div>` : ''}
+                        ${article.obra.genero ? `<div>Género: ${article.obra.genero}</div>` : ''}
+                        ${article.obra.actos ? `<div>Actos: ${article.obra.actos}</div>` : ''}
+                        ${article.obra.lugar_de_representación ?
+                    `<div>Lugar: ${article.obra.lugar_de_representación}</div>` : ''
+                }
+                        ${pageLinks ? `<div>Páginas: ${pageLinks}</div>` : ''}
+                    </div>
+                    ${article.contexto ? `<div class="context">${article.contexto}</div>` : ''}
+                </div>
+            `;
+        }
+
+        function renderEntry(entry) {
+            return `
+                <div class="entry-card">
+                    <div class="entry-header">
+                        <h2 class="entry-title">
+                            ${entry.Título}
+                            <a class="pdf-link" onclick="showPdfPage('${entry.PDF}', 1)">
+                                📄 Ver PDF
+                            </a>
+                        </h2>
+                        <div class="metadata">
+                            <span>Fecha: ${entry.Fecha}</span>
+                            <span>Número: ${entry.Número}</span>
+                            <span class="tag tag-${entry.LITERATURA}">
+                                Literatura: ${entry.LITERATURA ? 'Sí' : 'No'}
+                            </span>
+                            <span class="tag tag-${entry.MUSICA}">
+                                Música: ${entry.MUSICA ? 'Sí' : 'No'}
+                            </span>
+                        </div>
+                    </div>
+
+                    ${entry.PAGINAS_LITERATURA?.length ? `
+                        <div class="content-section">
+                            <h3 class="section-title">Páginas de Literatura</h3>
+                            ${entry.PAGINAS_LITERATURA.map(pagina => `
+                                <div class="page-reference">
+                                    <div class="page-header">
+                                        <span>Página ${pagina.periodico} (PDF: ${pagina.pdf})</span>
+                                        ${createPageLink(entry.PDF, pagina.pdf)}
+                                    </div>
+                                    ${pagina.contenido ? `
+                                        <div class="page-content">${pagina.contenido}</div>
+                                    ` : ''}
+                                </div>
+                            `).join('')}
+                        </div>
+                    ` : ''}
+
+                    ${entry.ARTICULOS_LITERATURA?.length ? `
+                        <div class="content-section">
+                            <h3 class="section-title">Artículos de Literatura</h3>
+                            ${entry.ARTICULOS_LITERATURA.map(articulo =>
+                renderArticle({ ...articulo, pdfName: entry.PDF })
+            ).join('')}
+                        </div>
+                    ` : ''}
+
+                    ${entry.ARTICULOS_MUSICA?.length ? `
+                        <div class="content-section">
+                            <h3 class="section-title">Artículos de Música</h3>
+                            ${entry.ARTICULOS_MUSICA.map(articulo => `
+                                <div class="article-card">
+                                    <div class="article-title">${articulo.tipo}</div>
+                                    <div class="article-metadata">
+                                        ${articulo.obra ? `<div>Obra: ${articulo.obra}</div>` : ''}
+                                        ${articulo.interprete ? `<div>Intérprete: ${articulo.interprete}</div>` : ''}
+                                        ${articulo.lugar ? `<div>Lugar: ${articulo.lugar}</div>` : ''}
+                                    </div>
+                                    ${articulo.contexto ? `<div class="context">${articulo.contexto}</div>` : ''}
+                                </div>
+                            `).join('')}
+                        </div>
+                    ` : ''}
+
+                    ${entry.OTRAS_REFERENCIAS_CULTURALES?.length ? `
+                        <div class="content-section">
+                            <h3 class="section-title">Otras Referencias Culturales</h3>
+                            ${entry.OTRAS_REFERENCIAS_CULTURALES.map(ref => `
+                                <div class="article-card">
+                                    <div class="article-title">${ref.tema}</div>
+                                    <div class="article-content">${ref.descripcion}</div>
+                                    ${ref.conexiones?.length ? `
+                                        <div class="context">
+                                            Conexiones: ${ref.conexiones.join(', ')}
+                                        </div>
+                                    ` : ''}
+                                </div>
+                            `).join('')}
+                        </div>
+                    ` : ''}
+                </div>
+            `;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const app = document.querySelector('.content-panel');
+
+            try {
+                const response = await fetch('combined.json');
+                if (!response.ok) throw new Error('Error al cargar el archivo JSON');
+                const data = await response.json();
+
+                app.innerHTML = `
+                    <div class="year-header">Año ${data.Año}</div>
+                    ${data.datos.map(entry => renderEntry(entry)).join('')}
+                `;
+
+            } catch (error) {
+                app.innerHTML = `
+                    <div class="error">
+                        Error al cargar los datos: ${error.message}
+                    </div>
+                `;
+                console.error('Error:', error);
+            }
+        });
+    </script>
+</body>
+
+</html>
+```
+
 # 8. Compartimos los datos.
 Para comprobar que la web diseñada es útil se opta por subir una pequeña muestra a Github, repositorio que permite mostrar páginas web. Una vez comprobada, dado el volumen de datos de este encargo, toda la información y los pdf se leen desde archivos locales.
 
-(Añadir nota técnica para lanzar chrome que permita leer archivos locales)
-
+Para que Google Chrome permita leer datos locales lo lanzamos con 
+```
+google-chrome --allow-file-access-from-files 1807.html 
+```
 
 copiamos el html  ojo, el de 1807 que no necesita carpeta pdfs
 

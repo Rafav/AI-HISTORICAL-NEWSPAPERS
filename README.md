@@ -1,20 +1,23 @@
 # AI-HISTORICAL-NEWSPAPERS
 Workflow for scrapping, AI parsing and creating web pages for historical Newspapers.
 
-
-
 # 1. Introducción.
 
 Este artículo detalla proceso de uso de la IA para la localización e identificación automática noticias literarias,artísticas y culturales, con especial atención al Siglo de Oro, en ejemplares de prensa del siglo XIX. Este procedimiento informático, aplicable a otras cabeceras, ha supuesto una reducción del  %[por determinar] del tiempo de localización de datos frente a la revisión manual de cada página. Así mismo se ha validado estadísticamente, lo que ha permitido a los investigadores dar por bueno el resultado de las consultas a la IA. Por último se detallan los entregables que de manera automática se generan con la información localizada.
 
 
 # 2. Caso de Estudio: El Diario Mercantil de Cádiz
+
 La elección del Diario Mercantil de Cádiz como objeto de análisis ha sido determinada por el profesor Jaime Galbarro, de la Universidad de Sevilla. Los ejemplares se encuentran digitalizados en el portal de Prensa Histórica https://prensahistorica.mcu.es/es/publicaciones/numeros_por_mes.do?idPublicacion=3625 Esta cabecera comienza en 1807 y se extingue en 1830, con 7.456 ejemplares y un total de  37.381 páginas a procesar. Ha resultado ser un conjunto de datos excelente, por distintos motivos:
 
 a) Es un periódico generalista, que incluye noticias económicas, culturales, sociales. 
+
 b) Incluye períodos históricos donde se cortaron todas las actividades culturales por motivos bélicos 
+
 c) Hay períodos con ausencia de teatro y danza por motivos religiosos, por ejemplo durante la Cuaresma. 
-d) Los ejemplares digitalizados tienen buena calidad 
+
+d) Los ejemplares digitalizados tienen buena calidad.
+
 e) No están uniformados los números de página de cada ejemplar.
 
 
@@ -22,6 +25,7 @@ e) No están uniformados los números de página de cada ejemplar.
 
 Hay dos aspectos clave para el uso de IA en este caso de uso:
 a) La IA no puede inventarse datos que no figuren en las noticias.
+
 b) La información que devuelve la IA debe ser sistemática.
 
 
@@ -794,6 +798,3 @@ Para que Google Chrome permita leer datos locales lo lanzamos con
 ```
 google-chrome --allow-file-access-from-files 1807.html 
 ```
-
-copiamos el html  ojo, el de 1807 que no necesita carpeta pdfs
-

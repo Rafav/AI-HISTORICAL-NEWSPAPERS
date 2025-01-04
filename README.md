@@ -10,7 +10,7 @@ Este artículo detalla proceso de uso de la IA para la localización e identific
 
 # 2. Caso de Estudio: El Diario Mercantil de Cádiz
 
-La elección del Diario Mercantil de Cádiz como objeto de análisis ha sido determinada por el profesor Jaime Galbarro, de la Universidad de Sevilla. Los ejemplares se encuentran digitalizados en el portal de Prensa Histórica https://prensahistorica.mcu.es/es/publicaciones/numeros_por_mes.do?idPublicacion=3625 
+La elección del Diario Mercantil de Cádiz como objeto de análisis ha sido determinada por el profesor Jaime Galbarro, de la Universidad de Sevilla. Los ejemplares se encuentran digitalizados en el [portal de Prensa Histórica](https://prensahistorica.mcu.es/es/publicaciones/numeros_por_mes.do?idPublicacion=3625)
 
 Esta cabecera comienza en 1807 y se extingue en 1830, con un total de 7.456 ejemplares que suman 37.381 páginas a procesar. Ha resultado ser un conjunto de datos excelente, por distintos motivos:
 
@@ -270,7 +270,7 @@ En esta fase del proyecto disponemos ya de un prompt válido y el corpus complet
 21, 43, 65, 87, 109, 131, 153, 175, 197, 219, 241, 263, 285, 307, 329, 341, 358
 
 
-Se crea un pequeño programa que copia los ejemplares correspondientes, por año, para empezar a crear los resultados. Claude AI tiene la posibilidad de usar una API (Application Programming Interface) en lugar de preguntar uno a uno. Se crea un pequeño programa en Python se lanza para cada ejemplar. Tenemos dos posibilidades
+Se crea un [programa que copia los ejemplares correspondientes](/sw/mover-pdfs-a-validar.py), por año, para empezar a crear los resultados que queremos validar. Claude AI tiene la posibilidad de usar una API (Application Programming Interface) en lugar de preguntar uno a uno. Se crea un pequeño programa en Python se lanza para cada ejemplar. Tenemos dos posibilidades
 
 ## 6.1. Resultados en tiempo real. Coste de 0,01$ por página y resultados inmediatos.
 
@@ -298,7 +298,7 @@ done
 ```
 #!/bin/bash
 
-# Procesar cada archivo que coincida con el patrón
+# Procesar cada archivo que coincida con el patrón *_batch_order.txt
 for file in *_batch_order.txt; do
     if [ -f "$file" ]; then
         # Extraer el ID usando grep
@@ -329,6 +329,7 @@ custom_id=$(jq -r .custom_id msgbatch_016EVpCc8X6HWza3SZ8gPoTN_results.jsonl)
 # procesamos con jq y generamos la salida json con el nombre del pdf
 
 jq -r '.result.message.content[0].text' msgbatch_016EVpCc8X6HWza3SZ8gPoTN_results.jsonl > "${custom_id}.json"
+
 ```
 ### 6.2.4. Limpiamos la salida descargada de cada id, para resultado bajado con pyth0n y msg_id
 Una vez que comproibamos que la salida es correcta, lo precesmoa masivamente, en los ficheros *_batch_output.txt tenemos toda la onformación, que hay que extraer.

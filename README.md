@@ -9,7 +9,7 @@ Workflow for scrapping, AI parsing and creating web pages for Historical Newspap
 Este artículo detalla el proceso de uso de la IA para la localización e identificación automática de noticias literarias, artísticas y culturales, con especial atención al Siglo de Oro, en ejemplares de prensa del siglo XIX. Este procedimiento informático, aplicable a otras cabeceras, ha supuesto una reducción del  %[por determinar] del tiempo de localización de datos frente a la revisión manual de cada página. Así mismo, se ha validado estadísticamente, lo que ha permitido a los investigadores dar por bueno el resultado de las consultas a la IA. Por último, se detallan los entregables que de manera automática se generan con la información localizada.
 
 
-# 2. Caso de Estudio: El Diario Mercantil de Cádiz.
+# 2. Caso de Estudio: Diario Mercantil de Cádiz.
 
 La elección del Diario Mercantil de Cádiz como objeto de análisis ha sido determinada por el profesor Jaime Galbarro, de la Universidad de Sevilla. Los ejemplares se encuentran digitalizados en el [portal de Prensa Histórica.](https://prensahistorica.mcu.es/es/publicaciones/numeros_por_mes.do?idPublicacion=3625)
 
@@ -26,7 +26,7 @@ d) Los ejemplares digitalizados tienen buena calidad.
 e) No están uniformados los números de página de cada ejemplar.
 
 
-# 3. Prompt incial para estudiar la viabilidad del método. 
+# 3. Prompt inicial. 
 
 Hay dos aspectos clave para el uso de IA en este caso de uso:
 
@@ -40,7 +40,7 @@ Debemos por tanto minimizar la posibilidad de que se incluyan alucinaciones en l
 Para usar los datos de forma óptima en las investigaciones posteriores, pediremos que los resultados que devuelva la IA estén normalizados, organizados, faciliten posteriores búsquedas y filtrados, así como la localización de forma ágil de los hallazgos.
 
 
-Con estas premisas se diseña un prompt, que se prueba en dos ejemplares. El prompt es el siguiente:
+Con estas premisas se diseña un prompt, que se prueba inicialmente en dos ejemplares. El prompt es el siguiente:
 ```
 1. TRANSCRIPCIÓN BASE:
 - Realiza el OCR y transcribe el texto completo manteniendo el formato original en español
@@ -143,11 +143,11 @@ Para cada elemento identificado, proporciona:
 
 ```
 
-La comprobación manual de 2 ejemplares es correcta, por lo que pasamos a la siguiente fase.
+La comprobación manual de las respuestas parea estos 2 ejemplares es correcta, por lo que pasamos a la siguiente fase.
 
 # 4. Automatizaciones.
 
-Incorporando informáticos a los proyectos de Humanidades digitales se implementan automatismos que ahorran tiempo, sistematizan los procesos y dan seguridad a la hora de abordar proyectos masivos. Descargan de trabajo manual a los investigadores.
+Incorporando informáticos a los proyectos de Humanidades digitales se implementan automatismos que ahorran tiempo, sistematizan los procesos y dan seguridad a la hora de abordar proyectos masivos.
 
 ## 4.1 Scrapping.
 
@@ -155,7 +155,7 @@ Por *scrapping* entendemos un conjunto de técnicas para extraer datos de págin
 
 ![downthemall extension](/img/downThemAll-quick-filter-PDF.png)
 
-Mostramos aquí una segunda opción, la usada en este proyecto, que está orientado al ámbito educativo. Esta opción usa búsquedas desde la consola del navegador mediante expresiones regulares. Dentro del navegador web, localizar PDF -> botón derecho ->inspeccionar.  El navegador nos muestra como se construyen los enlaces. Para descargarlos, en la consola del navegador se pega el siguiente código:
+Mostramos aquí una segunda opción, la usada en este proyecto, que está orientado al ámbito educativo. Usamos búsquedas desde la consola del navegador mediante expresiones regulares. Dentro del navegador web, localizar PDF -> botón derecho ->inspeccionar.  El navegador nos muestra como se construyen los enlaces. Para descargarlos, en la consola del navegador se pega el siguiente código:
 
 ```
 let bodyHtml = document.body.innerHTML;let regex = /<a\s+(?:[^>]*?\s+)?href="([^"]*)"[^>]*>\s*(.*PDF.*)\s*<\/a>/g;
@@ -830,4 +830,3 @@ google-chrome --allow-file-access-from-files file.html
 # 9. Conclusión.
 
 El uso de técnicas de *scrapping* y consultas a la IA permite sistematizar el proceso de consulta de noticias de interés en prensa histórica.
-

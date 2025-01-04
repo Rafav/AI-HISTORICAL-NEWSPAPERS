@@ -1,11 +1,11 @@
 # AI-HISTORICAL-NEWSPAPERS
 Workflow for scrapping, AI parsing and creating web pages for historical Newspapers.
 
-![web final](/img/output.png)
+[![web final](/img/output.png)](https://rafav.github.io/diariomercantil/1807/1807.html){:target="_blank"}
 
 # 1. Introducción.
 
-Este artículo detalla proceso de uso de la IA para la localización e identificación automática noticias literarias,artísticas y culturales, con especial atención al Siglo de Oro, en ejemplares de prensa del siglo XIX. Este procedimiento informático, aplicable a otras cabeceras, ha supuesto una reducción del  %[por determinar] del tiempo de localización de datos frente a la revisión manual de cada página. Así mismo se ha validado estadísticamente, lo que ha permitido a los investigadores dar por bueno el resultado de las consultas a la IA. Por último se detallan los entregables que de manera automática se generan con la información localizada.
+Este artículo detalla proceso de uso de la IA para la localización e identificación automática de noticias literarias,artísticas y culturales, con especial atención al Siglo de Oro, en ejemplares de prensa del siglo XIX. Este procedimiento informático, aplicable a otras cabeceras, ha supuesto una reducción del  %[por determinar] del tiempo de localización de datos frente a la revisión manual de cada página. Así mismo se ha validado estadísticamente, lo que ha permitido a los investigadores dar por bueno el resultado de las consultas a la IA. Por último se detallan los entregables que de manera automática se generan con la información localizada.
 
 
 # 2. Caso de Estudio: El Diario Mercantil de Cádiz
@@ -810,7 +810,7 @@ Al ser datos organizados en JSON, nuestro proyecto requiere solo de 1 página we
 ```
 
 # 8. Compartimos los datos.
-Para comprobar que la web diseñada es útil se opta por subir una pequeña muestra a Github, repositorio que permite mostrar páginas web. Una vez comprobada, dado el volumen de datos de este encargo, toda la información y los pdf se leen desde archivos locales.
+Para comprobar que la web diseñada es útil se opta por subir [una pequeña muestra a Github](https://rafav.github.io/diariomercantil/1807/1807.html), repositorio que permite mostrar páginas web. Una vez comprobada, dado el volumen de datos de este encargo, toda la información y los pdf se leen desde archivos locales.
 
 Para que Google Chrome permita leer datos locales lo lanzamos con 
 ```

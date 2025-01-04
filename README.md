@@ -186,7 +186,7 @@ Opción a) Con el propio DownThemAll.
 
 Opcion b) Con un script de descarga ética. Si bien DownThemAll permite una descarga rápida y eficaz, se ha creado un programa que descargue uno a uno pero añadiendo pausas entre descarga que impidan saturar el servidor.
 
-Opción c) Extensiones específicas de descarga para esa web concreta, si las hubiera. Para Prensa Histórica, HemerotecaBNE hay extensiones para Chrome que permiten descargas masivas de los resultados de búsqueda. 
+Opción c) Con extensiones específicas de descarga para esa web concreta, si las hubiera. Para Prensa Histórica, HemerotecaBNE hay extensiones para Chrome que permiten descargas masivas de los resultados de búsqueda. 
 
 
 Al finalizar este paso ya tenemos el corpus a investigar.

@@ -815,5 +815,5 @@ Para comprobar que la web diseñada es útil se opta por subir [una pequeña mue
 
 Para que Google Chrome permita leer datos locales lo lanzamos con 
 ```
-google-chrome --allow-file-access-from-files 1807.html 
+google-chrome --allow-file-access-from-files file.html 
 ```

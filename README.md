@@ -292,9 +292,10 @@ for file in *.pdf;
        python3 (/sw/batch.py) --file_name "$file" --custom_id "$(basename "$file" .pdf)"> $(basename "$file" .pdf)_batch_order.txt;
 fi;
 done
-``
+``` 
 
 ### 6.2.2. Descargamos la salida de los lotes. 
+
 ```
 #!/bin/bash
 
@@ -340,12 +341,11 @@ for file in *_batch_output.txt ;do  cat $file | sed 's/\\n//g' | sed 's/\\/\\\\/
 
 ### 6.2.5. Unimos los resultados de cada año
 
-Unimos los json, añadimos el año (que aparece en cada carpeta) y borramos frases extra que Claude añade al final de cada archivo,a modo de conclusión general.
+Unimos los json, añadimos el año (que aparece en cada carpeta) y borramos frases extra que Claude añade al final de cada archivo,a modo de conclusión general. Para este caso de uso se necesita que el directorio sea numérico, i.e. 1819.
 ```
 ./combinar_json_add_ejemplares.sh
 ```
 
-OJO NECESITA QUE LA CARPETA SEA NUMÉRICA, I.E. 1819, DE LO CONTRARIO DA PROBLEMA
 
 # 7. Generamos la web.
 

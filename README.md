@@ -1,4 +1,5 @@
-# INTELIGENCIA ARTIFICIAL PARA LOCALIZAR AUTOMATICAMENTE NOTICIAS EN PRENSA HISTORICA.
+# INTELIGENCIA ARTIFICIAL PARA LA LOCALIZACION AUTOMATICA DE NOTICIAS EN PRENSA HISTORICA.
+
 Workflow for scrapping, AI parsing and creating web pages for Historical Newspapers.
 
 [![web final](/img/output.png)](https://rafav.github.io/diariomercantil/1807/1807.html)
@@ -150,11 +151,11 @@ Incorporando informáticos a los proyectos de Humanidades digitales se implement
 
 ## 4.1 Scrapping.
 
-Por *scrapping* entendemos un conjunto de técnicas para extraer datos de páginas web. En el caso de Prensa histórica, los resultados de la web muestran enlaces con el texto PDF y la dirección URL del ejemplar digitalizado. Nos interesa extraer esas direcciones para descargarlas posteriormente. Para ello existen varias técnicas, en el caso de la web de Prensa Histórica, con los resultados ordenados por año podemos usar el complemento DownThemAll y en filtro rápido escribir PDF.
+Por *scrapping* entendemos un conjunto de técnicas para extraer datos de páginas web. En el caso de Prensa histórica, los resultados de la web muestran enlaces con el texto PDF y la dirección URL del ejemplar digitalizado. Nos interesa extraer esas direcciones para descargarlas posteriormente. Para ello existen varias técnicas, en el caso de la web de Prensa Histórica, con los resultados ordenados por año podemos usar el complemento DownThemAll y en filtro rápido escribir pdf.
 
 ![downthemall extension](/img/downThemAll-quick-filter-PDF.png)
 
-Mostramos aquí una segunda opción, la usada en el proyecto, orientada al ámbito educativo. Usa búsquedas desde la consola del navegador usando expresiones regulares. Dentro del navegador web, localizar PDF -> botón derecho ->inspeccionar. Con esto se nos muestra como se construyen los enlaces. Para descargarlos, en la consola del navegador se pega este código:
+Mostramos aquí una segunda opción, la usada en este proyecto, que está orientado al ámbito educativo. Esta opción usa búsquedas desde la consola del navegador mediante expresiones regulares. Dentro del navegador web, localizar PDF -> botón derecho ->inspeccionar.  El navegador nos muestra como se construyen los enlaces. Para descargarlos, en la consola del navegador se pega el siguiente código:
 
 ```
 let bodyHtml = document.body.innerHTML;let regex = /<a\s+(?:[^>]*?\s+)?href="([^"]*)"[^>]*>\s*(.*PDF.*)\s*<\/a>/g;
@@ -180,7 +181,7 @@ while ((match = regex.exec(bodyHtml)) !== null) {
 // Muestra el total de enlaces encontrados
 console.log('Total de enlaces PDF encontrados: ' + totalLinks);
 ```
-Se guarda el resultado de la consola y se repite para cada año.Una vez obtenidos los enlaces de descarga, se procede a descargarlos.
+Se guarda el resultado de la consola y se repite para cada año. Una vez obtenidos los enlaces de descarga, se procede a descargarlos.
 
 Opción a) Con el propio DownThemAll.
 
@@ -194,12 +195,12 @@ Al finalizar este paso ya tenemos el corpus a investigar.
 
 ## 4.2. Unificación de datos.
 
-En función de los distintos métodos de descarga usados, los pdf descargados pueden tener nomenclatura distinta que es aconsejable normalizar. En este caso concreto podríamos tener pdf con nombres como 2043097.pdf y como grupo.dopath.1002043097 Es clave mantener la coherencia de los nombres de archivo y directorios.
+En función de los distintos métodos de descarga usados, los pdf descargados pueden tener nomenclatura distinta, que es aconsejable normalizar. En este caso concreto podríamos tener pdf con nombres como *2043097.pdf* o *grupo.dopath.1002043097*. Es clave mantener la coherencia de los nombres de archivo y directorios.
 
 
 # 5. Validación estadística. 
 
-En esta fase del proyecto disponemos ya de un prompt válido y el corpus completo. Es necesario comprobar que los resultados correctos, usando una  muestra estadísticamente significativa. Para ello se le pide a la IA que seleccione un conjunto de muestras, considerado que tenemos una población finita de 7500 documentos y que queremos tener nivel de confianza 95%, margen de error 5% y una variabilidad esperada del 50%. Nos propone estos ejemplares a analizar
+En esta fase del proyecto disponemos ya de un prompt válido y el corpus completo. Es necesario comprobar que la IA devueve resultados correctos, usando una  muestra estadísticamente significativa. Para ello, se le pide a la IA que seleccione un conjunto de muestras. Considerado que tenemos una población finita de 7.500 documentos y que queremos tener un nivel de confianza del 95%, un margen de error del 5% y que hay una variabilidad esperada del 50%, pedimos a la IA que seleccione una muestra, que son los siguientes ejemplares a analizar:
 
 ## 5.1. Muestra estratificada por años.
 
@@ -271,9 +272,13 @@ En esta fase del proyecto disponemos ya de un prompt válido y el corpus complet
 
 
 # 6. IA para el procesado del datset.
-Se crea un [programa que copia los ejemplares correspondientes](/sw/mover-pdfs-a-validar.py), por año. Este conjuto de ejemplares forma el dataset con el que crearemos los resultados a validar. Claude AI tiene la posibilidad de usar una API (Application Programming Interface) en lugar de preguntar uno a uno. Tenemos dos posibilidades:
+Se crea un [programa que copia los ejemplares correspondientes](/sw/mover-pdfs-a-validar.py), por año. Este conjuto de ejemplares forma el *dataset* con el que crearemos los resultados a validar. Claude AI permite hacer consultas utilizando una *API (Application Programming Interface)* en lugar de consultar ejemplar a ejemplar. 
 
-## 6.1. Resultados en tiempo real. Coste de 0,01$ por página y resultados inmediatos.
+Tenemos dos posibilidades:
+
+## 6.1. Resultados en tiempo real.
+
+Coste de 0,01$ por página y resultados inmediatos.
 
 ```
 for file in *.pdf; do
@@ -281,7 +286,9 @@ for file in *.pdf; do
 done
 ```
 
-## 6.2. Lotes. Coste de 0,005$ por página. Se lanzan las preguntas y posteriormente (24 horas, aunque suele ser menor el tiempo de espera) se recupera la salida.
+## 6.2. Lotes.   
+
+Coste de 0,005$ por página. Se lanzan las preguntas y posteriormente se recuperan las respuestas. Están disponibles en un máximo de 24 horas, aunque suele ser menor el tiempo de respuesta.
 
 ### 6.2.1. Procesamos 
 
@@ -333,16 +340,17 @@ custom_id=$(jq -r .custom_id msgbatch_016EVpCc8X6HWza3SZ8gPoTN_results.jsonl)
 jq -r '.result.message.content[0].text' msgbatch_016EVpCc8X6HWza3SZ8gPoTN_results.jsonl > "${custom_id}.json"
 
 ```
-### 6.2.4. Limpiamos la salida descargada de cada id, para resultado bajado con pyth0n y msg_id
-Una vez que comproibamos que la salida es correcta, lo precesmoa masivamente, en los ficheros *_batch_output.txt tenemos toda la onformación, que hay que extraer.
+### 6.2.4. Limpiamos la salida descargada de cada id, para resultado bajado con pyth0n y msg_id.
+
+Una vez que comprobamos que la salida es correcta, procesamos masivamente. En los ficheros *_batch_output.txt tenemos toda la información, que pasamos que extraer.
 
 ```
 for file in *_batch_output.txt ;do  cat $file | sed 's/\\n//g' | sed 's/\\/\\\\/g' |grep -o '{.*}'| jq -r . >$(basename "$file" "_batch_output.txt").json; done
 ```
 
-### 6.2.5. Unimos los resultados de cada año
+### 6.2.5. Unimos los resultados de cada año.
 
-Unimos los json, añadimos el año (que aparece en cada carpeta) y borramos frases extra que Claude añade al final de cada archivo,a modo de conclusión general. Para este caso de uso se necesita que el directorio sea numérico, i.e. 1819.
+Unimos los json, añadimos el año (que aparece en cada carpeta) y borramos frases extra que Claude añade al final de cada archivo, a modo de conclusión general. Para este caso de uso se necesita que el directorio sea numérico, i.e. 1819.
 ```
 ./combinar_json_add_ejemplares.sh
 ```
@@ -350,9 +358,9 @@ Unimos los json, añadimos el año (que aparece en cada carpeta) y borramos fras
 
 # 7. Generamos la web.
 
-En este paso tenemos el prompt, el corpus y los resultados de investigar cada ejemplar. Necesitamos dar a los filólogos una herramienta útil de validar los resultados. Se diseña una web que da la posibilidad mostrar losa resultados y en la misma pestaña abrir los pdf, pudiendo hacer scroll de forma indendiente en los resultados y en el propio pdf, así como ir directamente a las páginas donde hay noticias literarias o artísticas.
+En este paso tenemos el prompt, el corpus y los resultados de investigar cada ejemplar. Necesitamos dar a los filólogos una herramienta útil para validar los resultados. Se diseña una web que da la posibilidad de mostrar los resultados y a la vez visualizar los pdf, pudiendo hacer scroll de forma independiente en los resultados y también dentro del propio pdf, así como ir directamente a las páginas donde hay noticias literarias o artísticas.
 
-Al ser datos organizados en JSON, nuestro proyecto requiere solo de 1 página web, la misma para cada año ,que lee el archivo combined.json y muestra los datos. Tiene una parte de código Javascript que itera y muestra los resultados, con independencia del año, del número de ejemplares, cuantas noticias ha encontrado, etc.
+Al ser datos organizados en JSON, nuestro proyecto requiere solo de 1 página web, la misma para cada año. La web lee el archivo combined.json (que tiene todos los resultados juntos) y muestra los datos. Tiene una parte de código Javascript que itera y muestra los resultados, con independencia del año, del número de ejemplares, de cuantas noticias se han encontrado, etc.
 
 ```
 <!DOCTYPE html>
@@ -811,9 +819,15 @@ Al ser datos organizados en JSON, nuestro proyecto requiere solo de 1 página we
 ```
 
 # 8. Compartimos los datos.
-Para comprobar que la web diseñada es útil se opta por subir [una pequeña muestra a Github](https://rafav.github.io/diariomercantil/1807/1807.html), repositorio que permite mostrar páginas web. Una vez comprobada, dado el volumen de datos de este encargo, toda la información y los pdf se leen desde archivos locales.
 
-Para que Google Chrome permita leer datos locales lo lanzamos con 
+Para comprobar que la web diseñada es útil, se opta por subir [una pequeña muestra a Github](https://rafav.github.io/diariomercantil/1807/1807.html), repositorio que permite mostrar páginas web. Una vez comprobada, dado el volumen de datos de este encargo, toda la información y los pdf se leen desde archivos locales.
+
+Para que Google Chrome permita leer datos locales lo lanzamos con:
 ```
 google-chrome --allow-file-access-from-files file.html 
 ```
+
+# 9. Conclusión.
+
+El uso de técnicas de *scrapping* y consultas a la IA permite sistematizar el proceso de consulta de noticias de interés en prensa histórica.
+

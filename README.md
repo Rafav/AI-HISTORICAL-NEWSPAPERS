@@ -150,11 +150,11 @@ La gran ventaja de las Humanidades digitales es que incorporando informáticos a
 
 ## 4.1 Scrapping.
 
-Por scrapping entendemos un conjunto de técnicas para extraer datos de páginas web. En el caso de Prensa histórica, los resultados de la web muestran enlaces con el texto PDF y la dirección URL del ejemplar digitalizado. Nos interesa extraer esas direcciones para descargarlas posteriormente. Para ello existen varias técnicas, en el caso de la web de Prensa Histórica, al mostrar resultdos por año podemos usar el complemento DownThemAll y en filtro rápido escribir PDF.
+Por scrapping entendemos un conjunto de técnicas para extraer datos de páginas web. En el caso de Prensa histórica, los resultados de la web muestran enlaces con el texto PDF y la dirección URL del ejemplar digitalizado. Nos interesa extraer esas direcciones para descargarlas posteriormente. Para ello existen varias técnicas, en el caso de la web de Prensa Histórica, al mostrar resultados por año podemos usar el complemento DownThemAll y en filtro rápido escribir PDF.
 
 ![downthemall extension](/img/downThemAll-quick-filter-PDF.png)
 
-Mostramos aquí una segunda opción, la usada en el proyecto, orientada al ámbito educativo. Usa búsquedas desde la consola del navegador usando expresiones regulares. Dentro del navegador web, localizar PDF -> botón derecho ->inspeccionar. Con esto se nos muestra como se construyen los enlaces.Para descargarlos, en la consola del navegador, se pega este código:
+Mostramos aquí una segunda opción, la usada en el proyecto, orientada al ámbito educativo. Usa búsquedas desde la consola del navegador usando expresiones regulares. Dentro del navegador web, localizar PDF -> botón derecho ->inspeccionar. Con esto se nos muestra como se construyen los enlaces. Para descargarlos, en la consola del navegador se pega este código:
 
 ```
 let bodyHtml = document.body.innerHTML;let regex = /<a\s+(?:[^>]*?\s+)?href="([^"]*)"[^>]*>\s*(.*PDF.*)\s*<\/a>/g;

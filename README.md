@@ -201,82 +201,83 @@ En función de los distintos métodos de descarga usados, los pdf descargados pu
 
 En esta fase del proyecto disponemos ya de un prompt válido y el corpus completo. Es necesario comprobar que los resultados correctos, usando una  muestra estadísticamente significativa. Para ello se le pide a la IA que seleccione un conjunto de muestras, considerado que tenemos una población finita de 7500 documentos y que queremos tener nivel de confianza 95%, margen de error 5% y una variabilidad esperada del 50%. Nos propone estos ejemplares a analizar
 
-# Muestra estratificada por años
+## 5.1. Muestra estratificada por años.
 
-## Sin fecha
+### Sin fecha.
 - 1 (único ejemplar)
 
-## 1807 (18 ejemplares)
+### 1807 (18 ejemplares).
 73, 124, 140, 156, 167, 182, 190, 201, 215, 230, 245, 267, 278, 290, 301, 322, 340, 351
 
-## 1808 (17 ejemplares)
+### 1808 (17 ejemplares).
 15, 34, 52, 78, 95, 112, 145, 167, 189, 210, 234, 256, 278, 290, 312, 334, 347
 
-## 1809 (18 ejemplares)
+### 1809 (18 ejemplares).
 21, 45, 67, 89, 112, 134, 156, 178, 200, 223, 245, 267, 289, 301, 323, 334, 345, 358
 
-## 1810 (16 ejemplares)
+### 1810 (16 ejemplares).
 23, 45, 67, 89, 112, 134, 156, 178, 201, 223, 245, 267, 289, 301, 312, 323
 
-## 1811 (17 ejemplares)
+### 1811 (17 ejemplares).
 22, 44, 67, 89, 111, 133, 156, 178, 200, 222, 245, 267, 289, 311, 333, 345, 355
 
-## 1812 (16 ejemplares)
+### 1812 (16 ejemplares).
 21, 43, 65, 87, 109, 131, 154, 176, 198, 220, 242, 264, 286, 308, 330, 335
 
-## 1816 (6 ejemplares)
+### 1816 (6 ejemplares).
 12, 34, 56, 78, 98, 112
 
-## 1817 (18 ejemplares)
+### 1817 (18 ejemplares).
 23, 45, 67, 89, 112, 134, 156, 178, 200, 223, 245, 267, 289, 311, 323, 334, 345, 356
 
-## 1818 (18 ejemplares)
+### 1818 (18 ejemplares).
 22, 44, 66, 88, 110, 132, 154, 176, 198, 220, 242, 264, 286, 308, 330, 342, 352, 360
 
-## 1819 (18 ejemplares)
+### 1819 (18 ejemplares).
 21, 43, 65, 87, 109, 131, 153, 175, 197, 219, 241, 263, 285, 307, 329, 341, 353, 361
 
-## 1820 (21 ejemplares)
+### 1820 (21 ejemplares).
 25, 48, 71, 94, 117, 140, 163, 186, 209, 232, 255, 278, 301, 324, 347, 370, 383, 396, 409, 422, 428
 
-## 1821 (21 ejemplares)
+### 1821 (21 ejemplares).
 24, 47, 70, 93, 116, 139, 162, 185, 208, 231, 254, 277, 300, 323, 346, 369, 382, 395, 408, 421, 427
 
-## 1822 (18 ejemplares)
+### 1822 (18 ejemplares).
 23, 45, 67, 89, 111, 133, 155, 177, 199, 221, 243, 265, 287, 309, 331, 343, 354, 362
 
-## 1823 (18 ejemplares)
+### 1823 (18 ejemplares).
 22, 44, 66, 88, 110, 132, 154, 176, 198, 220, 242, 264, 286, 308, 330, 342, 353, 359
 
-## 1824 (18 ejemplares)
+### 1824 (18 ejemplares).
 24, 46, 68, 90, 112, 134, 156, 178, 200, 222, 244, 266, 288, 310, 332, 344, 355, 363
 
-## 1825 (18 ejemplares)
+### 1825 (18 ejemplares).
 23, 45, 67, 89, 111, 133, 155, 177, 199, 221, 243, 265, 287, 309, 331, 343, 354, 361
 
-## 1826 (18 ejemplares)
+### 1826 (18 ejemplares).
 22, 44, 66, 88, 110, 132, 154, 176, 198, 220, 242, 264, 286, 308, 330, 342, 353, 360
 
-## 1827 (18 ejemplares)
+### 1827 (18 ejemplares).
 21, 43, 65, 87, 109, 131, 153, 175, 197, 219, 241, 263, 285, 307, 329, 341, 352, 359
 
-## 1828 (18 ejemplares)
+### 1828 (18 ejemplares).
 23, 45, 67, 89, 111, 133, 155, 177, 199, 221, 243, 265, 287, 309, 331, 343, 354, 362
 
-## 1829 (18 ejemplares)
+### 1829 (18 ejemplares).
 22, 44, 66, 88, 110, 132, 154, 176, 198, 220, 242, 264, 286, 308, 330, 342, 353, 361
 
-## 1830 (17 ejemplares)
+### 1830 (17 ejemplares).
 21, 43, 65, 87, 109, 131, 153, 175, 197, 219, 241, 263, 285, 307, 329, 341, 358
 
 
-Se crea un [programa que copia los ejemplares correspondientes](/sw/mover-pdfs-a-validar.py), por año, para empezar a crear los resultados que queremos validar. Claude AI tiene la posibilidad de usar una API (Application Programming Interface) en lugar de preguntar uno a uno. Se crea un pequeño programa en Python se lanza para cada ejemplar. Tenemos dos posibilidades
+# 6. IA para el procesado del datset.
+Se crea un [programa que copia los ejemplares correspondientes](/sw/mover-pdfs-a-validar.py), por año. Este conjuto de ejemplares forma el dataset con el que crearemos los resultados a validar. Claude AI tiene la posibilidad de usar una API (Application Programming Interface) en lugar de preguntar uno a uno. Tenemos dos posibilidades:
 
 ## 6.1. Resultados en tiempo real. Coste de 0,01$ por página y resultados inmediatos.
 
 ```
 for file in *.pdf; do
-  python3 (/sw/diario-mercantil-a-json.py) "$file" > "${file%.pdf}.json";
+  python3 diario-mercantil-a-json.py "$file" > "${file%.pdf}.json";
 done
 ```
 
@@ -289,7 +290,7 @@ for file in *.pdf;
  do
     if [ -f "$file" ];
      then
-       python3 (/sw/batch.py) --file_name "$file" --custom_id "$(basename "$file" .pdf)"> $(basename "$file" .pdf)_batch_order.txt;
+       python3 batch.py --file_name "$file" --custom_id "$(basename "$file" .pdf)"> $(basename "$file" .pdf)_batch_order.txt;
 fi;
 done
 ``` 

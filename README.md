@@ -292,7 +292,7 @@ for file in *.pdf;
        python3 (/sw/batch.py) --file_name "$file" --custom_id "$(basename "$file" .pdf)"> $(basename "$file" .pdf)_batch_order.txt;
 fi;
 done
-
+``
 
 ### 6.2.2. Descargamos la salida de los lotes. 
 ```

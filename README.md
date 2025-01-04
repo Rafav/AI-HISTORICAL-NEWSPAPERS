@@ -1,5 +1,5 @@
-# AI-HISTORICAL-NEWSPAPERS
-Workflow for scrapping, AI parsing and creating web pages for historical Newspapers.
+# INTELIGENCIA ARTIFICIAL PARA LOCALIZAR AUTOMATICAMENTE NOTICIAS EN PRENSA HISTORICA.
+Workflow for scrapping, AI parsing and creating web pages for Historical Newspapers.
 
 [![web final](/img/output.png)](https://rafav.github.io/diariomercantil/1807/1807.html)
 

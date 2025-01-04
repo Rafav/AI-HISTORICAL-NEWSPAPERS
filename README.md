@@ -1,7 +1,7 @@
 # AI-HISTORICAL-NEWSPAPERS
 Workflow for scrapping, AI parsing and creating web pages for historical Newspapers.
 
-[![web final](/img/output.png)](https://rafav.github.io/diariomercantil/1807/1807.html){:target="_blank"}
+[![web final](/img/output.png)](https://rafav.github.io/diariomercantil/1807/1807.html)
 
 # 1. Introducción.
 

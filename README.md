@@ -276,7 +276,7 @@ Se crea un pequeño programa que copia los ejemplares correspondientes, por año
 
 ```
 for file in *.pdf; do
-  python3 diario-mercantil-a-json.py "$file" > "${file%.pdf}.json";
+  python3 (/sw/diario-mercantil-a-json.py) "$file" > "${file%.pdf}.json";
 done
 ```
 
@@ -284,7 +284,14 @@ done
 
 ### 6.2.1. Procesamos 
 
-for file in *.pdf; do     if [ -f "$file" ]; then         python3 /home/rafa/Descargas/Diario\ Mercantil/diario-claude/batch.py --file_name "$file" --custom_id "$(basename "$file" .pdf)"> $(basename "$file" .pdf)_batch_order.txt;     fi; done
+```
+for file in *.pdf;
+ do
+    if [ -f "$file" ];
+     then
+       python3 (/sw/batch.py) --file_name "$file" --custom_id "$(basename "$file" .pdf)"> $(basename "$file" .pdf)_batch_order.txt;
+fi;
+done
 
 
 ### 6.2.2. Descargamos la salida de los lotes. 

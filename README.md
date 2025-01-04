@@ -5,20 +5,20 @@ Workflow for scrapping, AI parsing and creating web pages for Historical Newspap
 
 # 1. Introducción.
 
-Este artículo detalla el proceso de uso de la IA para la localización e identificación automática de noticias literarias, artísticas y culturales, con especial atención al Siglo de Oro, en ejemplares de prensa del siglo XIX. Este procedimiento informático, aplicable a otras cabeceras, ha supuesto una reducción del  %[por determinar] del tiempo de localización de datos frente a la revisión manual de cada página. Así mismo se ha validado estadísticamente, lo que ha permitido a los investigadores dar por bueno el resultado de las consultas a la IA. Por último se detallan los entregables que de manera automática se generan con la información localizada.
+Este artículo detalla el proceso de uso de la IA para la localización e identificación automática de noticias literarias, artísticas y culturales, con especial atención al Siglo de Oro, en ejemplares de prensa del siglo XIX. Este procedimiento informático, aplicable a otras cabeceras, ha supuesto una reducción del  %[por determinar] del tiempo de localización de datos frente a la revisión manual de cada página. Así mismo, se ha validado estadísticamente, lo que ha permitido a los investigadores dar por bueno el resultado de las consultas a la IA. Por último, se detallan los entregables que de manera automática se generan con la información localizada.
 
 
 # 2. Caso de Estudio: El Diario Mercantil de Cádiz.
 
 La elección del Diario Mercantil de Cádiz como objeto de análisis ha sido determinada por el profesor Jaime Galbarro, de la Universidad de Sevilla. Los ejemplares se encuentran digitalizados en el [portal de Prensa Histórica.](https://prensahistorica.mcu.es/es/publicaciones/numeros_por_mes.do?idPublicacion=3625)
 
-Esta cabecera comienza en 1807 y se extingue en 1830, con un total de 7.456 ejemplares que suman 37.381 páginas a procesar. Ha resultado ser un conjunto de datos excelente, por distintos motivos:
+Esta cabecera comienza en 1807 y se extingue en 1830, con un total de 7.456 ejemplares que suman 37.381 páginas a procesar. Ha resultado ser un conjunto de datos excelente por distintos motivos:
 
-a) Es un periódico generalista, que incluye noticias económicas, culturales, sociales. 
+a) Es un periódico generalista que incluye noticias económicas, culturales, sociales. 
 
-b) Incluye períodos históricos donde se cortaron todas las actividades culturales por motivos bélicos 
+b) Incluye períodos históricos donde se cortaron todas las actividades culturales por motivos bélicos. 
 
-c) Hay períodos con ausencia de teatro y danza por motivos religiosos, por ejemplo durante la Cuaresma. 
+c) Hay períodos con ausencia de teatro y danza por motivos religiosos, por ejemplo, durante la Cuaresma. 
 
 d) Los ejemplares digitalizados tienen buena calidad.
 
@@ -34,9 +34,9 @@ a) La IA no puede inventarse datos que no figuren en las noticias.
 b) La información que devuelve la IA debe ser sistemática, sin saltarse referencias.
 
 
-Debemos por tanto minimizar la posibilidad de que se incluyan alucinaciones en los resultados, que aparecen tanto si el origen de la información son páginas escaneadas como si fuera texto escrito. Pruebas con Qwen2-VL-72B, Claude y ChatGPT han demostrado que aún no tenemos disponibles IA que sean 100% fiables en textos completos. Herramientas como Transkribus o Surya dan mejores resultados en tanto que no añaden información pero aun no llegan al 100% de fiablidad y tampoco resultan útiles cuando hay maquetación diferente a la estándar, porque intercalan filas y columnas. En modelos LLM se ha evidenciado que las alucinaciones son menores cuando se pide que localice información y luego transcriba el párrafo. 
+Debemos por tanto minimizar la posibilidad de que se incluyan alucinaciones en los resultados, que aparecen tanto si el origen de la información son pdf o texto escrito. Pruebas con Qwen2-VL-72B, Claude y ChatGPT han demostrado que aún no tenemos disponibles IA que sean 100% fiables en textos completos. Herramientas como Transkribus o Surya dan mejores resultados en tanto que no añaden información pero aun no llegan al 100% de fiablidad y tampoco resultan útiles cuando hay maquetación diferente a la estándar, porque intercalan filas y columnas. En modelos LLM se ha evidenciado que las alucinaciones son menores cuando se pide que localice información y luego transcriba el párrafo. 
 
-Tanto con datos en forma de imagen como textuales, para usar los datos de forma óptima en las investigaciones posteriores, pediremos que los resultados que devuelva la IA estén normalizados, organizados, faciliten posteriores búsquedas y filtrados así como la localización de forma ágil de los hallazgos.
+Para usar los datos de forma óptima en las investigaciones posteriores, pediremos que los resultados que devuelva la IA estén normalizados, organizados, faciliten posteriores búsquedas y filtrados, así como la localización de forma ágil de los hallazgos.
 
 
 Con estas premisas se diseña un prompt, que se prueba en dos ejemplares. El prompt es el siguiente:
@@ -146,11 +146,11 @@ La comprobación manual de 2 ejemplares es correcta, por lo que pasamos a la sig
 
 # 4. Automatizaciones.
 
-La gran ventaja de las Humanidades digitales es que incorporando informáticos a los proyectos surgen automatismos que ahorran tiempo, sistematizan los procesos y dan seguridad a la hora de abordar proyectos masivos.
+Incorporando informáticos a los proyectos de Humanidades digitales se implementan automatismos que ahorran tiempo, sistematizan los procesos y dan seguridad a la hora de abordar proyectos masivos. Descargan de trabajo manual a los investigadores.
 
 ## 4.1 Scrapping.
 
-Por scrapping entendemos un conjunto de técnicas para extraer datos de páginas web. En el caso de Prensa histórica, los resultados de la web muestran enlaces con el texto PDF y la dirección URL del ejemplar digitalizado. Nos interesa extraer esas direcciones para descargarlas posteriormente. Para ello existen varias técnicas, en el caso de la web de Prensa Histórica, al mostrar resultados por año podemos usar el complemento DownThemAll y en filtro rápido escribir PDF.
+Por *scrapping* entendemos un conjunto de técnicas para extraer datos de páginas web. En el caso de Prensa histórica, los resultados de la web muestran enlaces con el texto PDF y la dirección URL del ejemplar digitalizado. Nos interesa extraer esas direcciones para descargarlas posteriormente. Para ello existen varias técnicas, en el caso de la web de Prensa Histórica, con los resultados ordenados por año podemos usar el complemento DownThemAll y en filtro rápido escribir PDF.
 
 ![downthemall extension](/img/downThemAll-quick-filter-PDF.png)
 

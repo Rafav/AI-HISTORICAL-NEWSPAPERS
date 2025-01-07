@@ -17,9 +17,9 @@ Esta cabecera comienza en 1807 y se extingue en 1830, con un total de 7.456 ejem
 
 a) Es un periódico generalista que incluye noticias económicas, culturales, sociales. 
 
-b) Incluye períodos históricos donde se cortaron todas las actividades culturales por motivos bélicos. 
+b) Incluye un período histórico, la Guerra de la Independencia, en el que la vida cotidiana se vio notablemente afectada, con la consecuente interrupción de la actividad cultural. 
 
-c) Hay períodos con ausencia de teatro y danza por motivos religiosos, por ejemplo, durante la Cuaresma. 
+c) Cuenta con etapas de suspensión de la actividad teatral, y de cualquier otra diversión, por razones diversas, como la Cuaresma.
 
 d) Los ejemplares digitalizados tienen buena calidad.
 
@@ -35,7 +35,7 @@ a) La IA no puede inventarse datos que no figuren en las noticias.
 b) La información que devuelve la IA debe ser sistemática, sin saltarse referencias.
 
 
-Debemos por tanto minimizar la posibilidad de que se incluyan alucinaciones en los resultados, que aparecen tanto si el origen de la información son pdf o texto escrito. Pruebas con Qwen2-VL-72B, Claude y ChatGPT han demostrado que aún no tenemos disponibles IA que sean 100% fiables en textos completos. Herramientas como Transkribus o Surya dan mejores resultados en tanto que no añaden información pero aun no llegan al 100% de fiablidad y tampoco resultan útiles cuando hay maquetación diferente a la estándar, porque intercalan filas y columnas. En modelos LLM se ha evidenciado que las alucinaciones son menores cuando se pide que localice información y luego transcriba el párrafo. 
+Debemos por tanto minimizar la posibilidad de que se incluyan alucinaciones en los resultados, que aparecen tanto si el origen de la información son pdf o texto escrito. Pruebas con Qwen2-VL-72B, Claude y ChatGPT han demostrado que aún no tenemos disponibles IA que sean 100% fiables en textos completos. Herramientas como Transkribus o Surya dan mejores resultados en tanto que no añaden información pero no alcanzan el 100% de fiabilidad, y tampoco resultan útiles cuando hay maquetación diferente a la estándar, porque intercalan filas y columnas. En modelos LLM se ha evidenciado que las alucinaciones son menores cuando se pide que localice información y luego transcriba el párrafo. 
 
 Para usar los datos de forma óptima en las investigaciones posteriores, pediremos que los resultados que devuelva la IA estén normalizados, organizados, faciliten posteriores búsquedas y filtrados, así como la localización de forma ágil de los hallazgos.
 
@@ -155,7 +155,7 @@ Por *scrapping* entendemos un conjunto de técnicas para extraer datos de págin
 
 ![downthemall extension](/img/downThemAll-quick-filter-PDF.png)
 
-Mostramos aquí una segunda opción, la usada en este proyecto, que está orientado al ámbito educativo. Usamos búsquedas desde la consola del navegador mediante expresiones regulares. Dentro del navegador web, localizar PDF -> botón derecho ->inspeccionar.  El navegador nos muestra como se construyen los enlaces. Para descargarlos, en la consola del navegador se pega el siguiente código:
+Mostramos aquí una segunda opción, la usada en este proyecto, que está orientado al ámbito educativo. Usamos búsquedas desde la consola del navegador mediante expresiones regulares. Dentro del navegador web, localizar PDF -> botón derecho ->inspeccionar.  El navegador nos muestra cómo se construyen los enlaces. Para descargarlos, en la consola del navegador se pega el siguiente código:
 
 ```
 let bodyHtml = document.body.innerHTML;let regex = /<a\s+(?:[^>]*?\s+)?href="([^"]*)"[^>]*>\s*(.*PDF.*)\s*<\/a>/g;
@@ -185,12 +185,12 @@ Se guarda el resultado de la consola y se repite para cada año. Una vez obtenid
 
 Opción a) Con el propio DownThemAll.
 
-Opcion b) Con un script de descarga ética. Si bien DownThemAll permite una descarga rápida y eficaz, se ha creado un programa que descargue uno a uno pero añadiendo pausas entre descarga que impidan saturar el servidor.
+Opcion b) Con un script de descarga ética. Si bien DownThemAll permite una descarga rápida y eficaz, se ha creado un programa que descargue uno a uno, pero añadiendo pausas entre descarga que impidan saturar el servidor.
 
 Opción c) Con extensiones específicas de descarga para esa web concreta, si las hubiera. Para Prensa Histórica, HemerotecaBNE hay extensiones para Chrome que permiten descargas masivas de los resultados de búsqueda. 
 
 
-Al finalizar este paso ya tenemos el corpus a investigar.
+Al finalizar este paso ya tenemos el corpus que se va a investigar.
 
 
 ## 4.2. Unificación de datos.
@@ -200,7 +200,7 @@ En función de los distintos métodos de descarga usados, los pdf descargados pu
 
 # 5. Validación estadística. 
 
-En esta fase del proyecto disponemos ya de un prompt válido y el corpus completo. Es necesario comprobar que la IA devueve resultados correctos, usando una  muestra estadísticamente significativa. Para ello, se le pide a la IA que seleccione un conjunto de muestras. Considerado que tenemos una población finita de 7.500 documentos y que queremos tener un nivel de confianza del 95%, un margen de error del 5% y que hay una variabilidad esperada del 50%, pedimos a la IA que seleccione una muestra, que son los siguientes ejemplares a analizar:
+En esta fase del proyecto disponemos ya de un prompt válido y el corpus completo. Es necesario comprobar que la IA devuelve resultados correctos, usando una  muestra estadísticamente significativa. Para ello, se le pide a la IA que seleccione un conjunto de muestras. Considerado que tenemos una población finita de 7.500 documentos y que queremos tener un nivel de confianza del 95%, un margen de error del 5% y que hay una variabilidad esperada del 50%, pedimos a la IA que seleccione una muestra, que son los siguientes ejemplares para analizar:
 
 ## 5.1. Muestra estratificada por años.
 
@@ -272,7 +272,7 @@ En esta fase del proyecto disponemos ya de un prompt válido y el corpus complet
 
 
 # 6. IA para el procesado del datset.
-Se crea un [programa que copia los ejemplares correspondientes](/sw/mover-pdfs-a-validar.py), por año. Este conjuto de ejemplares forma el *dataset* con el que crearemos los resultados a validar. Claude AI permite hacer consultas utilizando una *API (Application Programming Interface)* en lugar de consultar ejemplar a ejemplar. 
+Se crea un [programa que copia los ejemplares correspondientes](/sw/mover-pdfs-a-validar.py), por año. Este conjunto de ejemplares forma el *dataset* con el que crearemos los resultados a validar. Claude AI permite hacer consultas utilizando una *API (Application Programming Interface)* en lugar de consultar ejemplar a ejemplar. 
 
 Tenemos dos posibilidades:
 
@@ -342,7 +342,7 @@ jq -r '.result.message.content[0].text' msgbatch_016EVpCc8X6HWza3SZ8gPoTN_result
 ```
 ### 6.2.4. Limpiamos la salida descargada de cada id, para resultado bajado con pyth0n y msg_id.
 
-Una vez que comprobamos que la salida es correcta, procesamos masivamente. En los ficheros *_batch_output.txt tenemos toda la información, que pasamos que extraer.
+Una vez que comprobamos que la salida es correcta, procesamos masivamente. En los ficheros *_batch_output.txt tenemos toda la información, que pasamos que a extraer.
 
 ```
 for file in *_batch_output.txt ;do  cat $file | sed 's/\\n//g' | sed 's/\\/\\\\/g' |grep -o '{.*}'| jq -r . >$(basename "$file" "_batch_output.txt").json; done
@@ -358,7 +358,7 @@ Unimos los json, añadimos el año (que aparece en cada carpeta) y borramos fras
 
 # 7. Generamos la web.
 
-En este paso tenemos el prompt, el corpus y los resultados de investigar cada ejemplar. Necesitamos dar a los filólogos una herramienta útil para validar los resultados. Se diseña una web que da la posibilidad de mostrar los resultados y a la vez visualizar los pdf, pudiendo hacer scroll de forma independiente en los resultados y también dentro del propio pdf, así como ir directamente a las páginas donde hay noticias literarias o artísticas.
+En este paso tenemos el prompt, el corpus y los resultados para investigar cada ejemplar. Necesitamos dar a los filólogos una herramienta útil para validar los resultados. Se diseña una web que da la posibilidad de mostrar los resultados y a la vez visualizar los pdf, pudiendo hacer scroll de forma independiente en los resultados y también dentro del propio pdf, así como ir directamente a las páginas donde hay noticias literarias o artísticas.
 
 Al ser datos organizados en JSON, nuestro proyecto requiere solo de 1 página web, la misma para cada año. La web lee el archivo combined.json (que tiene todos los resultados juntos) y muestra los datos. Tiene una parte de código Javascript que itera y muestra los resultados, con independencia del año, del número de ejemplares, de cuantas noticias se han encontrado, etc.
 

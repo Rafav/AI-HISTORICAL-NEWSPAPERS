@@ -6,7 +6,7 @@ Workflow for scrapping, AI parsing and creating web pages for Historical Newspap
 
 # 1. Introducción.
 
-Este artículo detalla el proceso de uso de la IA para la localización e identificación automática de noticias literarias, artísticas y culturales, con especial atención al Siglo de Oro, en ejemplares de prensa del siglo XIX. Este procedimiento informático, aplicable a otras cabeceras, ha supuesto una reducción del  %[por determinar] del tiempo de localización de datos frente a la revisión manual de cada página. Así mismo, se ha validado estadísticamente, lo que ha permitido a los investigadores dar por bueno el resultado de las consultas a la IA. Por último, se detallan los entregables que de manera automática se generan con la información localizada.
+Este artículo detalla el proceso de uso de la IA para la localización e identificación automática de noticias literarias, artísticas y culturales, con especial atención al Siglo de Oro, en ejemplares de prensa del siglo XIX. Este procedimiento informático, aplicable a otras cabeceras, ha supuesto una reducción del  %[por determinar] del tiempo necesario para localizar los datos de forma manual. Así mismo, se ha validado estadísticamente, lo que ha permitido a los investigadores dar por bueno el resultado de las consultas a la IA. Por último, se detallan los entregables que de manera automática se generan con la información localizada.
 
 
 # 2. Caso de estudio: Diario Mercantil de Cádiz.
@@ -143,7 +143,7 @@ Para cada elemento identificado, proporciona:
 
 ```
 
-La comprobación manual de las respuestas parea estos 2 ejemplares es correcta, por lo que pasamos a la siguiente fase.
+La comprobación manual de las respuestas pare estos 2 ejemplares es correcta, por lo que pasamos a la siguiente fase.
 
 # 4. Automatizaciones.
 
@@ -151,11 +151,11 @@ Incorporando informáticos a los proyectos de Humanidades digitales se implement
 
 ## 4.1 Scrapping.
 
-Por *scrapping* entendemos un conjunto de técnicas para extraer datos de páginas web. En el caso de Prensa histórica, los resultados de la web muestran enlaces con el texto PDF y la dirección URL del ejemplar digitalizado. Nos interesa extraer esas direcciones para descargarlas posteriormente. Para ello existen varias técnicas, en el caso de la web de Prensa Histórica, con los resultados ordenados por año podemos usar el complemento DownThemAll y en filtro rápido escribir pdf.
+Por *scrapping* entendemos un conjunto de técnicas para extraer datos de páginas web. En el caso de Prensa histórica, los resultados de la web muestran enlaces con el texto PDF y la dirección URL del ejemplar digitalizado. Nos interesa extraer esas direcciones para descargarlas posteriormente. Para ello existen varias técnicas; en el caso de la web de Prensa Histórica, con los resultados ordenados por año, podemos usar el complemento DownThemAll y en filtro rápido escribir pdf.
 
 ![downthemall extension](/img/downThemAll-quick-filter-PDF.png)
 
-Mostramos aquí una segunda opción, la usada en este proyecto, que está orientado al ámbito educativo. Usamos búsquedas desde la consola del navegador mediante expresiones regulares. Dentro del navegador web, localizar PDF -> botón derecho ->inspeccionar.  El navegador nos muestra cómo se construyen los enlaces. Para descargarlos, en la consola del navegador se pega el siguiente código:
+Mostramos aquí una segunda opción, la usada en este proyecto, que está orientado al ámbito educativo. Usamos búsquedas desde la consola del navegador mediante expresiones regulares. Dentro del navegador web, localizar PDF -> botón derecho ->inspeccionar.  El navegador nos muestra cómo se construyen los enlaces. Para descargarlos se pega el siguiente código en la consola del navegador:
 
 ```
 let bodyHtml = document.body.innerHTML;let regex = /<a\s+(?:[^>]*?\s+)?href="([^"]*)"[^>]*>\s*(.*PDF.*)\s*<\/a>/g;
@@ -185,7 +185,7 @@ Se guarda el resultado de la consola y se repite para cada año. Una vez obtenid
 
 Opción a) Con el propio DownThemAll.
 
-Opcion b) Con un script de descarga ética. Si bien DownThemAll permite una descarga rápida y eficaz, se ha creado un programa que descargue uno a uno, pero añadiendo pausas entre descarga que impidan saturar el servidor.
+Opcion b) Con un script de descarga ética. Si bien DownThemAll permite una descarga rápida y eficaz, se ha creado un programa que descargue uno a uno, pero añadiendo pausas entre descarga que evitan que el servidor se sature.
 
 Opción c) Con extensiones específicas de descarga para esa web concreta, si las hubiera. Para Prensa Histórica, HemerotecaBNE hay extensiones para Chrome que permiten descargas masivas de los resultados de búsqueda. 
 
@@ -200,7 +200,7 @@ En función de los distintos métodos de descarga usados, los pdf descargados pu
 
 # 5. Validación estadística. 
 
-En esta fase del proyecto disponemos ya de un prompt válido y el corpus completo. Es necesario comprobar que la IA devuelve resultados correctos, usando una  muestra estadísticamente significativa. Para ello, se le pide a la IA que seleccione un conjunto de muestras. Considerado que tenemos una población finita de 7.500 documentos y que queremos tener un nivel de confianza del 95%, un margen de error del 5% y que hay una variabilidad esperada del 50%, pedimos a la IA que seleccione una muestra, que son los siguientes ejemplares para analizar:
+En esta fase del proyecto disponemos ya de un prompt válido y el corpus completo. Es necesario comprobar que la IA devuelve resultados correctos, usando una  muestra estadísticamente significativa. Para ello, se le pide a la IA que seleccione un conjunto de muestras. Considerado que tenemos una población finita de 7.500 documentos y que queremos tener un nivel de confianza del 95%, un margen de error del 5% y que hay una variabilidad esperada del 50% (todos los ejemplares tienen la misma posibilidad de contener o no la información que estamos estudiando) , pedimos a la IA que seleccione una muestra. Los ejemplares seleccionados son los siguientes:
 
 ## 5.1. Muestra estratificada por años.
 
@@ -272,7 +272,7 @@ En esta fase del proyecto disponemos ya de un prompt válido y el corpus complet
 
 
 # 6. IA para el procesado del datset.
-Se crea un [programa que copia los ejemplares correspondientes](/sw/mover-pdfs-a-validar.py), por año. Este conjunto de ejemplares forma el *dataset* con el que crearemos los resultados a validar. Claude AI permite hacer consultas utilizando una *API (Application Programming Interface)* en lugar de consultar ejemplar a ejemplar. 
+Se ha creado un [programa que copia los ejemplares correspondientes](/sw/mover-pdfs-a-validar.py), por año. Este conjunto de ejemplares forma el *dataset* con el que crearemos los resultados a validar. Claude AI permite hacer consultas utilizando una *API (Application Programming Interface)* en lugar de consultar ejemplar a ejemplar. 
 
 Tenemos dos posibilidades:
 
@@ -358,9 +358,9 @@ Unimos los json, añadimos el año (que aparece en cada carpeta) y borramos fras
 
 # 7. Generamos la web.
 
-En este paso tenemos el prompt, el corpus y los resultados para investigar cada ejemplar. Necesitamos dar a los filólogos una herramienta útil para validar los resultados. Se diseña una web que da la posibilidad de mostrar los resultados y a la vez visualizar los pdf, pudiendo hacer scroll de forma independiente en los resultados y también dentro del propio pdf, así como ir directamente a las páginas donde hay noticias literarias o artísticas.
+En este paso tenemos el prompt, el corpus y los resultados para investigar cada ejemplar. Necesitamos dar a los filólogos una herramienta útil para validar los resultados, para lo cual se ha diseñado una web que da la posibilidad de mostrar los resultados y a la vez visualizar los pdf, pudiendo hacer scroll de forma independiente en los resultados y también dentro del propio pdf, así como ir directamente a las páginas donde hay noticias literarias o artísticas.
 
-Al ser datos organizados en JSON, nuestro proyecto requiere solo de 1 página web, la misma para cada año. La web lee el archivo combined.json (que tiene todos los resultados juntos) y muestra los datos. Tiene una parte de código Javascript que itera y muestra los resultados, con independencia del año, del número de ejemplares, de cuantas noticias se han encontrado, etc.
+Al ser datos organizados en JSON, nuestro proyecto requiere solo de una página web, la misma para cada año. La web lee el archivo combined.json (que tiene todos los resultados juntos) y muestra los datos. Tiene una parte de código Javascript que itera y muestra los resultados, con independencia del año, del número de ejemplares, de cuantas noticias se han encontrado, etc.
 
 ```
 <!DOCTYPE html>
@@ -829,4 +829,4 @@ google-chrome --allow-file-access-from-files file.html
 
 # 9. Conclusión.
 
-El uso de técnicas de *scrapping* y consultas a la IA permite sistematizar el proceso de consulta de noticias de interés en prensa histórica.
+El uso de técnicas de *scrapping* y consultas a la IA permite sistematizar el proceso de descarga y posterior localización de noticias de interés en prensa histórica. El procedimiento desarrollado ha sido validado para noticias literarias y artísticas, siendo igualmente útil para otro tipo de investigaciones, que solo necesitarían ajustar el *prompt* a su campo de estudio.

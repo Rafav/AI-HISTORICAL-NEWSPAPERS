@@ -345,7 +345,7 @@ jq -r '.result.message.content[0].text' msgbatch_016EVpCc8X6HWza3SZ8gPoTN_result
 Una vez que comprobamos que la salida es correcta, procesamos masivamente. En los ficheros *_batch_output.txt tenemos toda la información, que pasamos que a extraer.
 
 ```
-for file in *_batch_output.txt ;do  cat $file | sed 's/\\n//g' | sed 's/\\/\\\\/g' |grep -o '{.*}'| jq -r . >$(basename "$file" "_batch_output.txt").json; done
+for file in *batch_output.txt; do  echo $file; cat "$file" |  sed -n "s/.*text='\({.*}\)[^}]*', type=.*/\1/p" | sed 's/\\\\n/\\n/g; s/\\n/\n/g; s/\\t/\t/g; s/\\r//g; s/\\'\''/'\''/g; s/: \([0-9]\+-[0-9]\+\)/: "\1"/g; s/\\\\/\\\\\\/g' | tr -d '\000-\037' | jq -r . >$(basename "$file" "_batch_output.txt").json; done
 ```
 
 ### 6.2.5. Unimos los resultados de cada año.
@@ -820,7 +820,31 @@ Al ser datos organizados en JSON, nuestro proyecto requiere solo de una página 
 
 # 8. Compartimos los datos.
 
-Para comprobar que la web diseñada es útil, se opta por subir [una pequeña muestra a Github](https://rafav.github.io/diariomercantil/1807/1807.html), repositorio que permite mostrar páginas web. Una vez comprobada, dado el volumen de datos de este encargo, toda la información y los pdf se leen desde archivos locales.
+Para comprobar que la web diseñada es útil, se opta por subir una pequeña muestra a Github, repositorio que permite mostrar páginas web. 
+
+[1807](https://rafav.github.io/diariomercantil/1807/index.html)
+[1808](https://rafav.github.io/diariomercantil/1808/index.html)
+[1809](https://rafav.github.io/diariomercantil/1809/index.html)
+[1810](https://rafav.github.io/diariomercantil/1810/index.html)
+[1811](https://rafav.github.io/diariomercantil/1811/index.html)
+[1812](https://rafav.github.io/diariomercantil/1812/index.html)
+[1816](https://rafav.github.io/diariomercantil/1816/index.html)
+[1817](https://rafav.github.io/diariomercantil/1817/index.html)
+[1818](https://rafav.github.io/diariomercantil/1818/index.html)
+[1819](https://rafav.github.io/diariomercantil/1819/index.html)
+[1820](https://rafav.github.io/diariomercantil/1820/index.html)
+[1821](https://rafav.github.io/diariomercantil/1821/index.html)
+[1822](https://rafav.github.io/diariomercantil/1822/index.html)
+[1823](https://rafav.github.io/diariomercantil/1823/index.html)
+[1824](https://rafav.github.io/diariomercantil/1824/index.html)
+[1825](https://rafav.github.io/diariomercantil/1825/index.html)
+[1826](https://rafav.github.io/diariomercantil/1826/index.html)
+[1827](https://rafav.github.io/diariomercantil/1827/index.html)
+[1828](https://rafav.github.io/diariomercantil/1828/index.html)
+[1829](https://rafav.github.io/diariomercantil/1829/index.html)
+[1830](https://rafav.github.io/diariomercantil/1830/index.html)
+
+Una vez comprobados, dado el volumen de datos de este encargo, toda la información y los pdf se leen desde archivos locales.
 
 Para que Google Chrome permita leer datos locales lo lanzamos con:
 ```

@@ -859,4 +859,4 @@ google-chrome --allow-file-access-from-files file.html
 
 # 9. Conclusión.
 
-El uso de técnicas de *scrapping* y consultas a la IA permite sistematizar el proceso de descarga y posterior localización de noticias de interés en prensa histórica. El procedimiento desarrollado ha sido validado para noticias literarias y artísticas, siendo igualmente útil para otro tipo de investigaciones, que solo necesitarían ajustar el *prompt* a su campo de estudio.
+El uso de técnicas de *scrapping* y consultas a la IA permite sistematizar el proceso de descarga y posterior localización de noticias de interés en prensa histórica. El procedimiento desarrollado ha sido validado para noticias literarias y artísticas, siendo igualmente útil para otro tipo de investigaciones, que solo necesitarían ajustes en el *prompt* a su campo de estudio.

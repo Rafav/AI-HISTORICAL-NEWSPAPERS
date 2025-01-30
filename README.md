@@ -157,8 +157,9 @@ Por *scrapping* entendemos un conjunto de técnicas para extraer datos de págin
 
 Mostramos aquí una segunda opción, la usada en este proyecto, que está orientado al ámbito educativo. Usamos búsquedas desde la consola del navegador mediante expresiones regulares. Dentro del navegador web, localizar PDF -> botón derecho ->inspeccionar.  El navegador nos muestra cómo se construyen los enlaces. Para descargarlos se pega el siguiente código en la consola del navegador:
 
-```
-let bodyHtml = document.body.innerHTML;let regex = /<a\s+(?:[^>]*?\s+)?href="([^"]*)"[^>]*>\s*(.*PDF.*)\s*<\/a>/g;
+```javascript
+let bodyHtml = document.body.innerHTML;
+let regex = /<a\s+(?:[^>]*?\s+)?href="([^"]*)"[^>]*>\s*(.*PDF.*)\s*<\/a>/g;
 let hrefs = [];
 let match;
 let totalLinks = 0; // Variable to store the count of matching links
@@ -280,7 +281,7 @@ Tenemos dos posibilidades:
 
 Coste de 0,01$ por página y resultados inmediatos.
 
-```
+```bash
 for file in *.pdf; do
   python3 diario-mercantil-a-json.py "$file" > "${file%.pdf}.json";
 done
@@ -292,7 +293,8 @@ Coste de 0,005$ por página. Se lanzan las preguntas y posteriormente se recuper
 
 ### 6.2.1. Procesamos 
 
-```
+```bash
+
 for file in *.pdf;
  do
     if [ -f "$file" ];
@@ -304,8 +306,7 @@ done
 
 ### 6.2.2. Descargamos la salida de los lotes. 
 
-```
-#!/bin/bash
+```bash
 
 # Procesar cada archivo que coincida con el patrón *_batch_order.txt
 for file in *_batch_order.txt; do
@@ -331,8 +332,9 @@ done
 
 ### 6.2.3. Bajamos manualmente desde la consola un único resultado,que convertimos a JSON
 
-En la consola https://console.anthropic.com/settings/workspaces/default/batches podemos ver los lotes y descargar cualquiera de ellos. El resultado es un JSONL que convertimos.
-```
+En la [consola de Anthropic](https://console.anthropic.com/settings/workspaces/default/batches) podemos ver los lotes y descargar cualquiera de ellos. El resultado es un JSONL que convertimos.
+```bash
+
 #Obtenemos el custom_id, que es el nombre del pdf.
 custom_id=$(jq -r .custom_id msgbatch_016EVpCc8X6HWza3SZ8gPoTN_results.jsonl)
 # procesamos con jq y generamos la salida json con el nombre del pdf
@@ -344,14 +346,17 @@ jq -r '.result.message.content[0].text' msgbatch_016EVpCc8X6HWza3SZ8gPoTN_result
 
 Una vez que comprobamos que la salida es correcta, procesamos masivamente. En los ficheros *_batch_output.txt tenemos toda la información, que pasamos que a extraer.
 
-```
-for file in *batch_output.txt; do  echo $file; cat "$file" |  sed -n "s/.*text='\({.*}\)[^}]*', type=.*/\1/p" | sed 's/\\\\n/\\n/g; s/\\n/\n/g; s/\\t/\t/g; s/\\r//g; s/\\'\''/'\''/g; s/: \([0-9]\+-[0-9]\+\)/: "\1"/g; s/\\\\/\\\\\\/g' | tr -d '\000-\037' | jq -r . >$(basename "$file" "_batch_output.txt").json; done
+```bash
+
+for file in *_batch_output.txt ;do  cat $file | sed 's/\\n//g' | sed 's/\\/\\\\/g' |grep -o '{.*}'| jq -r . >$(basename "$file" "_batch_output.txt").json; done
 ```
 
 ### 6.2.5. Unimos los resultados de cada año.
 
 Unimos los json, añadimos el año (que aparece en cada carpeta) y borramos frases extra que Claude añade al final de cada archivo, a modo de conclusión general. Para este caso de uso se necesita que el directorio sea numérico, i.e. 1819.
-```
+
+```bash
+
 ./combinar_json_add_ejemplares.sh
 ```
 
@@ -362,7 +367,8 @@ En este paso tenemos el prompt, el corpus y los resultados para investigar cada 
 
 Al ser datos organizados en JSON, nuestro proyecto requiere solo de una página web, la misma para cada año. La web lee el archivo combined.json (que tiene todos los resultados juntos) y muestra los datos. Tiene una parte de código Javascript que itera y muestra los resultados, con independencia del año, del número de ejemplares, de cuantas noticias se han encontrado, etc.
 
-```
+```html
+
 <!DOCTYPE html>
 <html lang="es">
 

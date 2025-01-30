@@ -274,6 +274,7 @@ We have two possibilities:
 Cost of $0.01 per page and immediate results.
 
 ```bash
+
 for file in *.pdf; do
   python3 diario-mercantil-a-json.py "$file" > "${file%.pdf}.json";
 done
@@ -286,6 +287,7 @@ Cost of $0.005 per page. Questions are submitted and answers are retrieved later
 ### 6.2.1. Processing
 
 ```bash
+
 for file in *.pdf;
  do
     if [ -f "$file" ];
@@ -321,7 +323,7 @@ done
 
 ### 6.2.3. Manually Downloading a Single Result and Converting to JSON
 
-In the Anthropic Console](https://console.anthropic.com/settings/workspaces/default/batches), we can view batches and download any of them. The result is a JSONL that we convert.
+In the [Anthropic Console](https://console.anthropic.com/settings/workspaces/default/batches), we can view batches and download any of them. The result is a JSONL that we convert.
 
 ```bash
 # Get the custom_id, which is the pdf name
@@ -336,6 +338,7 @@ jq -r '.result.message.content[0].text' msgbatch_016EVpCc8X6HWza3SZ8gPoTN_result
 Once we verify the output is correct, we process in bulk. In the *_batch_output.txt files we have all the information to extract.
 
 ```bash
+
 for file in *batch_output.txt; do  echo $file; cat "$file" |  sed -n "s/.*text='\({.*}\)[^}]*', type=.*/\1/p" | sed 's/\\\\n/\\n/g; s/\\n/\n/g; s/\\t/\t/g; s/\\r//g; s/\\'\''/'\''/g; s/: \([0-9]\+-[0-9]\+\)/: "\1"/g; s/\\\\/\\\\\\/g' | tr -d '\000-\037' | jq -r . >$(basename "$file" "_batch_output.txt").json; done
 ```
 
@@ -344,6 +347,7 @@ for file in *batch_output.txt; do  echo $file; cat "$file" |  sed -n "s/.*text='
 We combine the json files, add the year (which appears in each folder) and remove extra phrases that Claude adds at the end of each file as a general conclusion. For this use case, the directory needs to be numeric, i.e. 1819.
 
 ```bash
+
 ./combine_json_add_copies.sh
 ```
 
@@ -840,6 +844,7 @@ Once verified, given the volume of data in this project, all information and PDF
 To allow Google Chrome to read local data, we launch it with:
 
 ```bash
+
 google-chrome --allow-file-access-from-files file.html 
 ```
 

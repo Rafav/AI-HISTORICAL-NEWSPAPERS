@@ -847,7 +847,7 @@ Para comprobar que la web diseñada es útil, se opta por subir una pequeña mue
 Una vez comprobados, dado el volumen de datos de este encargo, toda la información y los pdf se leen desde archivos locales.
 
 Para que Google Chrome permita leer datos locales lo lanzamos con:
-```
+```bash
 google-chrome --allow-file-access-from-files file.html 
 ```
 

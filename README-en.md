@@ -10,7 +10,7 @@ This article details the process of using AI for automatic location and identifi
 
 # 2. Case Study: Diario Mercantil de Cádiz.
 
-The selection of Diario Mercantil de Cádiz as the object of analysis was determined by Professor Jaime Galbarro, from the University of Seville. The copies are digitized in the [Prensa Historica website.](https://prensahistorica.mcu.es/es/publicaciones/numeros_por_mes.do?idPublicacion=3625)
+The selection of Diario Mercantil de Cádiz as the object of analysis was determined by [Professor Jaime Galbarro](https://www.jaimegalbarro.com/), from the University of Seville. The copies are digitized in the [Prensa Historica website.](https://prensahistorica.mcu.es/es/publicaciones/numeros_por_mes.do?idPublicacion=3625)
 
 This newspaper started in 1807 and ended in 1830, with a total of 7,456 copies totaling 37,381 pages to process. It has proven to be an excellent dataset for various reasons:
 

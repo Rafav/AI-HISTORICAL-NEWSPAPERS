@@ -8,12 +8,12 @@ Workflow for scraping, AI parsing and creating web pages for Historical Newspape
 
 This article details the process of using AI for the automatic location and identification of literary, artistic and cultural news, with special attention to the Golden Age, in 19th century newspapers. This computer procedure, applicable to other newspapers, has meant a reduction of % [to be determined] of the time needed to locate the data manually. It has also been statistically validated, which has allowed the researchers to accept the results of the AI queries as valid. Finally, the deliverables that are automatically generated with the localized information are detailed.
 
-The proposal is framed within the research needs of the project ["La institución del ‘Siglo de Oro’. Construction processes in the periodical press (1801-1868). SILEM III” (PID2022-136995NB-I00)](http://www.uco.es/servicios/ucopress/silem/), funded by the National Research Plan of the Ministry of Science and Innovation and directed by Mercedes Comellas (University of Seville).
+**The proposal is framed within the research needs of the project ["La institución del ‘Siglo de Oro’. Construction processes in the periodical press (1801-1868). SILEM III” (PID2022-136995NB-I00)](http://www.uco.es/servicios/ucopress/silem/), funded by the National Research Plan of the Ministry of Science and Innovation and directed by Mercedes Comellas (University of Seville).**
 
 
 # 2. Case study: Diario Mercantil de Cádiz.
 
-The choice of the Diario Mercantil de Cádiz as the object of analysis was determined by [Professor Jaime Galbarro](https://www.jaimegalbarro.com/), of the University of Seville, in the context of research for the aforementioned project. The copies are digitized in the [Prensa Historica website.](https://prensahistorica.mcu.es/es/publicaciones/numeros_por_mes.do?idPublicacion=3625)
+The choice of the Diario Mercantil de Cádiz as the object of analysis was determined by [Professor Jaime Galbarro](https://www.jaimegalbarro.com/), of the University of Seville, **in the context of research for the aforementioned project.** The copies are digitized in the [Prensa Historica website.](https://prensahistorica.mcu.es/es/publicaciones/numeros_por_mes.do?idPublicacion=3625)
 
 This newspaper started in 1807 and ended in 1830, with a total of 7,456 copies totaling 37,381 pages to process. It has proven to be an excellent dataset for various reasons:
 

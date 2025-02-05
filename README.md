@@ -6,12 +6,14 @@ Workflow for scrapping, AI parsing and creating web pages for Historical Newspap
 
 # 1. Introducción.
 
-Este artículo detalla el proceso de uso de la IA para la localización e identificación automática de noticias literarias, artísticas y culturales, con especial atención al Siglo de Oro, en ejemplares de prensa del siglo XIX. Este procedimiento informático, aplicable a otras cabeceras, ha supuesto una reducción del  %[por determinar] del tiempo necesario para localizar los datos de forma manual. Así mismo, se ha validado estadísticamente, lo que ha permitido a los investigadores dar por bueno el resultado de las consultas a la IA. Por último, se detallan los entregables que de manera automática se generan con la información localizada.
+Este artículo detalla el proceso de uso de la IA para la localización e identificación automática de noticias literarias, artísticas y culturales, con especial atención al Siglo de Oro, en ejemplares de prensa del siglo XIX. Este procedimiento informático, aplicable a otras cabeceras, ha supuesto una reducción del %[por determinar] del tiempo necesario para localizar los datos de forma manual. Así mismo, se ha validado estadísticamente, lo que ha permitido a los investigadores dar por bueno el resultado de las consultas a la IA. Por último, se detallan los entregables que de manera automática se generan con la información localizada.
+
+La propuesta se enmarca dentro de las necesidades de investigación del proyecto [«La institución del “Siglo de Oro”. Procesos de construcción en la prensa periódica (1801-1868). SILEM III» (PID2022-136995NB-I00)](http://www.uco.es/servicios/ucopress/silem/), financiado por el Plan Nacional de Investigación del Ministerio de Ciencia e Innovación y dirigido por Mercedes Comellas (Universidad de Sevilla).
 
 
 # 2. Caso de estudio: Diario Mercantil de Cádiz.
 
-La elección del Diario Mercantil de Cádiz como objeto de análisis ha sido determinada por el [profesor Jaime Galbarro](https://www.jaimegalbarro.com/), de la Universidad de Sevilla. Los ejemplares se encuentran digitalizados en el [portal de Prensa Histórica.](https://prensahistorica.mcu.es/es/publicaciones/numeros_por_mes.do?idPublicacion=3625)
+La elección del Diario Mercantil de Cádiz como objeto de análisis ha sido determinada por el [profesor Jaime Galbarro](https://www.jaimegalbarro.com/), de la Universidad de Sevilla, en el contexto de investigación del mencionado proyecto. Los ejemplares se encuentran digitalizados en el [portal de Prensa Histórica.](https://prensahistorica.mcu.es/es/publicaciones/numeros_por_mes.do?idPublicacion=3625)
 
 Esta cabecera comienza en 1807 y se extingue en 1830, con un total de 7.456 ejemplares que suman 37.381 páginas a procesar. Ha resultado ser un conjunto de datos excelente por distintos motivos:
 

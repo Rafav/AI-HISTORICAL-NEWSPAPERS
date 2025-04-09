@@ -862,3 +862,10 @@ google-chrome --allow-file-access-from-files file.html
 # 9. Conclusión.
 
 El uso de técnicas de *scrapping* y consultas a la IA permite sistematizar el proceso de descarga y posterior localización de noticias de interés en prensa histórica. El procedimiento desarrollado ha sido validado para noticias literarias y artísticas, siendo igualmente útil para otro tipo de investigaciones, que solo necesitarían ajustes en el *prompt* a su campo de estudio.
+
+# 10. Proyectos similares
+
+El auge de la IA y las mejoras en OCR/HTR están aportando a las Humanidades digitales. Una serie de inicitaivas para el lector curioso pueden encontrarse en:
+1. [Digital Douady](https://github.com/phughesmcr/digitaldouay)
+2. [LexiMus](https://leximus.es)
+3. [Large-Scale Research with Historical Newspapers: A Turning Point through Generative AI – DH Lab](https://dhlab.hypotheses.org/4938)

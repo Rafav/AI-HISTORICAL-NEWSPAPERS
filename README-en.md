@@ -857,7 +857,8 @@ The use of scraping techniques and AI queries allows systematization of the down
 
 # 10. Similar projects
 
-The rise of AI and improvements in OCR/HTR are bringing to the Digital Humanities. A number of initiatives for the curious reader can be found at:
+The rise of AI and improvements in OCR/HTR are enabling the Digital Humanities to mine and analyze massive amounts of data. A number of initiatives for the curious reader can be found at:
+
 1. [Digital Douady](https://github.com/phughesmcr/digitaldouay)
 2. [LexiMus](https://leximus.es)
 3. [Large-Scale Research with Historical Newspapers: A Turning Point through Generative AI - DH Lab](https://dhlab.hypotheses.org/4938)

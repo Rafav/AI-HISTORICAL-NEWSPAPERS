@@ -854,3 +854,10 @@ google-chrome --allow-file-access-from-files file.html
 # 9. Conclusion
 
 The use of scraping techniques and AI queries allows systematization of the download process and subsequent location of news of interest in historical press. The developed procedure has been validated for literary and artistic news, being equally useful for other types of research, which would only need to adjust the prompt to their field of study.
+
+# 10. Similar projects
+
+The rise of AI and improvements in OCR/HTR are bringing to the Digital Humanities. A number of initiatives for the curious reader can be found at:
+1. [Digital Douady](https://github.com/phughesmcr/digitaldouay)
+2. [LexiMus](https://leximus.es)
+3. [Large-Scale Research with Historical Newspapers: A Turning Point through Generative AI - DH Lab](https://dhlab.hypotheses.org/4938)

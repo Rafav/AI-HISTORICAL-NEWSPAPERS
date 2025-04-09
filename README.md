@@ -865,7 +865,7 @@ El uso de técnicas de *scrapping* y consultas a la IA permite sistematizar el p
 
 # 10. Proyectos similares
 
-El auge de la IA y las mejoras en OCR/HTR están aportando a las Humanidades digitales. Una serie de inicitaivas para el lector curioso pueden encontrarse en:
+El auge de la IA y las mejoras en OCR/HTR están permitiendo a las Humanidades digitales la extracción y análisis masivo de datos. Una serie de iniciativas para el lector curioso pueden encontrarse en:
 1. [Digital Douady](https://github.com/phughesmcr/digitaldouay)
 2. [LexiMus](https://leximus.es)
 3. [Large-Scale Research with Historical Newspapers: A Turning Point through Generative AI – DH Lab](https://dhlab.hypotheses.org/4938)

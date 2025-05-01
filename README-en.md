@@ -1,6 +1,6 @@
 # USE OF ARTIFICIAL INTELLIGENCE FOR AUTOMATIC LOCATION OF NEWS IN HISTORICAL PRESS.
 
-Workflow for scraping, AI parsing and creating web pages for Historical Newspapers.
+Use of Artificial Intelligence for the automatic localization of news in Historical press.
 
 [![final web](/img/output.png)](https://rafav.github.io/diariomercantil/1807/index.html)
 

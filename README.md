@@ -347,7 +347,7 @@ jq -r '.result.message.content[0].text' msgbatch_016EVpCc8X6HWza3SZ8gPoTN_result
 ```
 ### 6.2.4. Limpiamos la salida descargada de cada id, para resultado bajado con pyth0n y msg_id.
 
-Una vez que comprobamos que la salida es correcta, procesamos masivamente. En los ficheros *_batch_output.txt tenemos toda la información, que pasamos que a extraer.
+Una vez que comprobamos que la salida es correcta, procesamos masivamente. En los ficheros *_batch_output.txt tenemos toda la información, que pasamos a extraer.
 
 ```bash
 

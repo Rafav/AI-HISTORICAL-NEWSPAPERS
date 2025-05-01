@@ -1,6 +1,6 @@
 # USO DE INTELIGENCIA ARTIFICIAL PARA LA LOCALIZACION AUTOMATICA DE NOTICIAS EN PRENSA HISTORICA.
 
-Use of Artificial Intelligencefor the automatic localization of news in Historical press.
+Use of Artificial Intelligence for the automatic localization of news in Historical press.
 
 [![web final](/img/output.png)](https://rafav.github.io/diariomercantil/1807/index.html)
 

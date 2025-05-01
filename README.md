@@ -145,7 +145,7 @@ Para cada elemento identificado, proporciona:
 
 ```
 
-La comprobación manual de las respuestas pare estos 2 ejemplares es correcta, por lo que pasamos a la siguiente fase.
+La comprobación manual de las respuestas para estos 2 ejemplares es correcta, por lo que pasamos a la siguiente fase.
 
 # 4. Automatizaciones.
 
@@ -275,6 +275,7 @@ En esta fase del proyecto disponemos ya de un prompt válido y el corpus complet
 
 
 # 6. IA para el procesado del datset.
+
 Se ha creado un [programa que copia los ejemplares correspondientes](/sw/mover-pdfs-a-validar.py), por año. Este conjunto de ejemplares forma el *dataset* con el que crearemos los resultados a validar. Claude AI permite hacer consultas utilizando una *API (Application Programming Interface)* en lugar de consultar ejemplar a ejemplar. 
 
 Tenemos dos posibilidades:

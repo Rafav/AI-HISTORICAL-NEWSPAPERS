@@ -257,7 +257,7 @@ Se guarda el resultado de la consola y se repite para cada año. Una vez obtenid
 
 Opción a) Con el propio DownThemAll.
 
-Opcion b) Con un script de descarga ética. Si bien DownThemAll permite una descarga rápida y eficaz, se ha creado un programa que descargue uno a uno, pero añadiendo pausas entre descarga que evitan que el servidor se sature.
+Opción b) Con un script de descarga ética. Si bien DownThemAll permite una descarga rápida y eficaz, se ha creado un programa que descargue uno a uno, pero añadiendo pausas entre descarga que evitan que el servidor se sature.
 
 Opción c) Con extensiones específicas de descarga para esa web concreta, si las hubiera. Para Prensa Histórica, HemerotecaBNE hay extensiones para Chrome que permiten descargas masivas de los resultados de búsqueda. 
 
@@ -929,11 +929,21 @@ Para que Google Chrome permita leer datos locales lo lanzamos con:
 google-chrome --allow-file-access-from-files file.html 
 ```
 
-# 9. Conclusión.
+# 9. Analizando. Creando artíclos. Investigando
+
+Llegados a este punto tenemos una base de datos, en cuanto que los archivos están organizados, estructurados y tienen datos relevantes para nuestra labor investigadora.
+
+[Claude Code](https://docs.anthropic.com/es/docs/agents-and-tools/claude-code/overview) *es una herramienta de codificación con agentes que vive en tu terminal, entiende tu base de código y te ayuda a programar más rápido a través de comandos en lenguaje natural. Al integrarse directamente con tu entorno de desarrollo, Claude Code optimiza tu flujo de trabajo sin requerir servidores adicionales o configuración compleja.*
+
+El novedoso enfoque de esta forma de trabajar permite usar Claude Code para la elaboración de artículos, utilizando como origen los datos, que tenemos en nuestro ordenador. Así se consigue que se leean todo los datos, sin límite de tamaño de archivos y que las hipótesis y tablas sean veraces.
+
+Con dos sencillas frases,*crea un paper universitario, experto en Filología, analiza la literatura, teatro, obras, poesías, con especial detalle de obras y autores del Siglo de Oro* y una vez revisada la primera versión *analiza en profundidad, aporta datos estadisticos, incluye autores menores, establece hipótesis de investigación, de autores aúreos frente al invasor francés* se logra este artículo.
+
+# 10. Conclusión.
 
 El uso de técnicas de *scrapping* y consultas a la IA permite sistematizar el proceso de descarga y posterior localización de noticias de interés en prensa histórica. El procedimiento desarrollado ha sido validado para noticias literarias y artísticas, siendo igualmente útil para otro tipo de investigaciones, que solo necesitarían ajustes en el *prompt* a su campo de estudio.
 
-# 10. Proyectos similares
+# 11. Proyectos similares
 
 El auge de la IA y las mejoras en OCR/HTR están permitiendo a las Humanidades digitales la extracción y análisis masivo de datos. Una serie de iniciativas para el lector curioso pueden encontrarse en:
 1. [Digital Douady](https://github.com/phughesmcr/digitaldouay)

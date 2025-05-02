@@ -939,7 +939,7 @@ El novedoso enfoque de esta forma de trabajar permite usar Claude Code para la e
 
 Con dos sencillas frases,*crea un paper universitario, experto en Filología, analiza la literatura, teatro, obras, poesías, con especial detalle de obras y autores del Siglo de Oro* y una vez revisada la primera versión *analiza en profundidad, aporta datos estadisticos, incluye autores menores, establece hipótesis de investigación, de autores aúreos frente al invasor francés* se logra este artículo.
 
-[![web final](/img/paper.png)](DiarioMercantil.pdf)
+[![paper](/img/paper.png)](DiarioMercantil.pdf)
 
 # 10. Conclusión.
 

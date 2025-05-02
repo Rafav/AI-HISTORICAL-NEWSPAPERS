@@ -939,6 +939,8 @@ El novedoso enfoque de esta forma de trabajar permite usar Claude Code para la e
 
 Con dos sencillas frases,*crea un paper universitario, experto en Filología, analiza la literatura, teatro, obras, poesías, con especial detalle de obras y autores del Siglo de Oro* y una vez revisada la primera versión *analiza en profundidad, aporta datos estadisticos, incluye autores menores, establece hipótesis de investigación, de autores aúreos frente al invasor francés* se logra este artículo.
 
+[![web final](/img/paper.png)](DiarioMercantil.pdf)
+
 # 10. Conclusión.
 
 El uso de técnicas de *scrapping* y consultas a la IA permite sistematizar el proceso de descarga y posterior localización de noticias de interés en prensa histórica. El procedimiento desarrollado ha sido validado para noticias literarias y artísticas, siendo igualmente útil para otro tipo de investigaciones, que solo necesitarían ajustes en el *prompt* a su campo de estudio.

@@ -145,7 +145,76 @@ Para cada elemento identificado, proporciona:
 
 ```
 
-La comprobación manual de las respuestas para estos 2 ejemplares es correcta, por lo que pasamos a la siguiente fase.
+El resultado es similar a este:
+
+```
+{
+  "Año": 1807,
+  "datos": [
+    {
+      "PDF": "2043097.pdf",
+      "Título": "DIARIO MERCANTIL DE CADIZ",
+      "Fecha": "1 de enero de 1807",
+      "Número": "6348",
+      "LITERATURA": true,
+      "PAGINAS_LITERATURA": [
+        {
+          "pdf": 4,
+          "periodico": 4,
+          "contenido": "TEATRO. = En el de esta Ciudad, en celebridad del dia, 
+          se dará la funcion siguiente: empezará la doble orquesta con una sinfonía; 
+          seguirá la Comedia titulada: Sancho Ortiz de la Roelas; 
+          concluida, se cantará un aria por la Sra. María Puy, 
+          cuya música es del celebre Maestro de este teatro D Esteban Cristiani; 
+          finalizada, se tocará la Overtura de la Batalla de Austerlitz, 
+          se baylarán las boleras por la Sra. Olivares y el Sr. Paz; 
+          terminando la funcion con el Saynete: El Remendon y la Prendera."
+        }
+      ],
+      "ARTICULOS_LITERATURA": [
+        {
+          "tipo": "referencia_directa",
+          "autor": "Lope de Vega",
+          "obra": {
+            "titulo": "Sancho Ortiz de la Roelas",
+            "genero": "Comedia",
+            "actos": null,
+            "autor_obra": "Lope de Vega (adaptación)",
+            "lugar de representación": "Teatro de Cádiz"
+          },
+          "paginas": [
+            {
+              "pdf": 4,
+              "periodico": 4
+            }
+          ],
+          "citas": [],
+          "contexto": "Obra representada como parte de las diversiones públicas del día"
+        },
+        {
+          "tipo": "referencia_directa",
+          "obra": {
+            "titulo": "El Remendon y la Prendera",
+            "genero": "Sainete",
+            "actos": null,
+            "autor_obra": null,
+            "lugar de representación": "Teatro de Cádiz"
+          },
+          "paginas": [
+            {
+              "pdf": 4,
+              "periodico": 4
+            }
+          ],
+          "citas": [],
+          "contexto": "Sainete que cierra la función teatral"
+        }
+      ]
+    }
+}
+``` 
+
+La comprobación manual de las respuestas con estos 2 ejemplares es correcta, por lo que pasamos a la siguiente fase.
 
 # 4. Automatizaciones.
 

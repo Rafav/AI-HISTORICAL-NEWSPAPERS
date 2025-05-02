@@ -915,14 +915,24 @@ To allow Google Chrome to read local data, we launch it with:
 google-chrome --allow-file-access-from-files file.html 
 ```
 
-# 9. Conclusion
+# 9. Analyzing. Creating Articles. Researching.
 
-The use of scraping techniques and AI queries allows systematization of the download process and subsequent location of news of interest in historical press. The developed procedure has been validated for literary and artistic news, being equally useful for other types of research, which would only need to adjust the prompt to their field of study.
+At this point, we have a database, as the files are organized, structured, and contain relevant data for our research work.
 
-# 10. Similar projects
+[Claude Code](https://docs.anthropic.com/es/docs/agents-and-tools/claude-code/overview) *is an agent-based coding tool that lives in your terminal, understands your codebase, and helps you program faster through natural language commands. By integrating directly with your development environment, Claude Code optimizes your workflow without requiring additional servers or complex configuration.*
 
-The rise of AI and improvements in OCR/HTR are enabling the Digital Humanities to mine and analyze massive amounts of data. A number of initiatives for the curious reader can be found at:
+The innovative approach of this way of working allows us to use Claude Code for article creation, using the data we have on our computer as a source. This ensures that all data is read, without file size limits, and that hypotheses and tables are accurate.
+
+With two simple phrases, *create a university paper, expert in Philology, analyze literature, theater, works, poetry, with special detail of works and authors of the Golden Age* and once the first version is reviewed *analyze in depth, provide statistical data, include minor authors, establish research hypotheses, of Golden Age authors against the French invader* this article is achieved.
+
+[![paper](/img/paper.png)](DiarioMercantil.pdf)
+
+# 10. Conclusion.
+The use of scraping techniques and AI queries allows systematizing the process of downloading and subsequently locating news of interest in historical press. The developed procedure has been validated for literary and artistic news, being equally useful for other types of research, which would only need adjustments in the *prompt* to their field of study.
+
+# 11. Similar Projects
+The rise of AI and improvements in OCR/HTR are allowing Digital Humanities to extract and analyze massive amounts of data. A series of initiatives for the curious reader can be found at:
 
 1. [Digital Douady](https://github.com/phughesmcr/digitaldouay)
 2. [LexiMus](https://leximus.es)
-3. [Large-Scale Research with Historical Newspapers: A Turning Point through Generative AI - DH Lab](https://dhlab.hypotheses.org/4938)
+3. [Large-Scale Research with Historical Newspapers: A Turning Point through Generative AI – DH Lab](https://dhlab.hypotheses.org/4938)

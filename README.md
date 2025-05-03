@@ -943,6 +943,9 @@ Facilmente se puede convertir de forma relativamente simpe a pdf + LaTeX
 
 [![paper](/img/paper.png)](https://drive.google.com/file/d/1jNWCTfDrj9S5mUIwgpp26nYAOhH3f-At/view?usp=sharing)
 
+
+Y si se desea, generar [una página web](https://rafav.github.io/diariomercantil/analisis/).
+
 # 10. Conclusión.
 
 El uso de técnicas de *scrapping* y consultas a la IA permite sistematizar el proceso de descarga y posterior localización de noticias de interés en prensa histórica. El procedimiento desarrollado ha sido validado para noticias literarias y artísticas, siendo igualmente útil para otro tipo de investigaciones, que solo necesitarían ajustes en el *prompt* a su campo de estudio.

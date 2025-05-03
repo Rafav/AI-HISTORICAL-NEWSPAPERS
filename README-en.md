@@ -927,6 +927,15 @@ With two simple phrases, *create a university paper, expert in Philology, analyz
 
 [![paper](/img/paper.png)](DiarioMercantil.pdf)
 
+Easily converted to pdf + LaTeX
+
+[![paper](/img/paper.png)](https://drive.google.com/file/d/1jNWCTfDrj9S5mUIwgpp26nYAOhH3f-At/view?usp=sharing)
+
+
+And, if desired, generate a web page.
+
+[![paper](/img/web.png)](https://rafav.github.io/diariomercantil/analisis/)
+
 # 10. Conclusion.
 The use of scraping techniques and AI queries allows systematizing the process of downloading and subsequently locating news of interest in historical press. The developed procedure has been validated for literary and artistic news, being equally useful for other types of research, which would only need adjustments in the *prompt* to their field of study.
 

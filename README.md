@@ -937,9 +937,9 @@ Llegados a este punto tenemos una base de datos, en cuanto que los archivos est�
 
 El novedoso enfoque de esta forma de trabajar permite usar Claude Code para la elaboración de artículos, utilizando como origen los datos, que tenemos en nuestro ordenador. Así se consigue que se leean todo los datos, sin límite de tamaño de archivos y que las hipótesis y tablas sean veraces.
 
-Con dos sencillas frases,*crea un paper universitario, experto en Filología, analiza la literatura, teatro, obras, poesías, con especial detalle de obras y autores del Siglo de Oro* y una vez revisada la primera versión *analiza en profundidad, aporta datos estadisticos, incluye autores menores, establece hipótesis de investigación, de autores aúreos frente al invasor francés* nos devuelve [este artículo](articulo_literatura_aurea_completo.md).
+Con dos sencillas frases:*crea un paper universitario, experto en Filología, analiza la literatura, teatro, obras, poesías, con especial detalle de obras y autores del Siglo de Oro* y una vez revisada la primera versión *analiza en profundidad, aporta datos estadisticos, incluye autores menores, establece hipótesis de investigación, de autores aúreos frente al invasor francés* nos devuelve [este artículo](articulo_literatura_aurea_completo.md).
 
-Facilmente se puede convertir de forma relativamente simpe a pdf + LaTeX
+Facilmente se puede convertir a pdf + LaTeX
 
 [![paper](/img/paper.png)](https://drive.google.com/file/d/1jNWCTfDrj9S5mUIwgpp26nYAOhH3f-At/view?usp=sharing)
 

@@ -944,7 +944,10 @@ Facilmente se puede convertir de forma relativamente simpe a pdf + LaTeX
 [![paper](/img/paper.png)](https://drive.google.com/file/d/1jNWCTfDrj9S5mUIwgpp26nYAOhH3f-At/view?usp=sharing)
 
 
-Y si se desea, generar [una página web](https://rafav.github.io/diariomercantil/analisis/).
+Y, si se desea, generar una página web.
+
+[![paper](/img/web.png)](https://rafav.github.io/diariomercantil/analisis/)
+
 
 # 10. Conclusión.
 

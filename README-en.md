@@ -732,7 +732,7 @@ And also transformed into a web publication that facilitates the validation and 
 
 The implementation of scraping techniques combined with AI systems allows for effectively systematizing the process of extraction and subsequent identification of specific contents in digitized historical press, as well as the creation of academic articles and dissemination tools. The methodology developed has been specifically validated for literary and artistic references, although it is equally applicable to other research areas through adjustments in the prompt according to the corresponding field of study.
 
-## 11. Similar projects
+## 12. Similar projects
 
 The advancement of AI along with improvements in OCR/HTR technologies is transforming the possibilities of Digital Humanities for the extraction and massive analysis of data. Some initiatives in this field are:
 

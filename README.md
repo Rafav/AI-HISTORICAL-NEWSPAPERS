@@ -536,7 +536,7 @@ Y también transformarse en una publicación web que facilite la validación y d
 
 La implementación de técnicas de *scrapping* combinadas con sistemas de IA permite sistematizar eficazmente el proceso de extracción y posterior identificación de contenidos específicos en prensa histórica digitalizada así como la creación de artículos académicos y herramientas de divulgación. La metodología desarrollada ha sido validada específicamente para referencias literarias y artísticas, aunque resulta igualmente aplicable a otras áreas de investigación mediante ajustes en el *prompt* según el campo de estudio correspondiente.
 
-## 11. Proyectos similares
+## 12. Proyectos similares
 
 El avance de la IA junto con las mejoras en tecnologías OCR/HTR está transformando las posibilidades de las Humanidades Digitales para la extracción y análisis masivo de datos.Algunas iniciativas en este ámbito son:
 
